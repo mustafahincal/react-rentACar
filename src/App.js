@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Car from "./components/car/Car";
+import Brand from "./components/brand/Brand";
+import Navi from "./components/navi/Navi";
+import Color from "./components/color/Color";
+import Customer from "./components/customer/Customer";
+import Rental from "./components/rental/Rental";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="font-poppins">
+        <Navi />
+        <div className="grid grid-cols-10">
+          <div className="col-span-2">
+            <Brand />
+          </div>
+          <div className="col-span-8">
+            <Car />
+          </div>
+          <Color />
+          <Customer />
+          <Rental />
+        </div>
+      </div>
+    </>
   );
 }
-
-export default App;
