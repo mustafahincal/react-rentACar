@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getColors } from "../../services/colorService";
+import { NavLink } from "react-router-dom";
 
 function Color() {
   const [colors, setColors] = useState([]);
@@ -9,12 +10,13 @@ function Color() {
   return (
     <div>
       {colors.map((color) => (
-        <div
-          className="py-1 px-2 hover:bg-gray-100 rounded mt-2"
+        <NavLink
+          to={`/cars/color/${color.id}`}
+          className="py-1 px-2 hover:bg-blue-100 rounded mt-2"
           key={color.id}
         >
           {color.name}
-        </div>
+        </NavLink>
       ))}
     </div>
   );

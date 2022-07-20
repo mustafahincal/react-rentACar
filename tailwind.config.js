@@ -12,7 +12,7 @@ module.exports = {
         darkBlue: "#32445A",
       },
       boxShadow: {
-        center: "1px 0px 10px 3px rgba(0, 0, 0, 0.1)",
+        item: "1px 0px 10px 3px rgba(0, 0, 0, 0.1)",
       },
     },
   },
