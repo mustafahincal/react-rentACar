@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Navi() {
   return (
@@ -7,9 +8,8 @@ function Navi() {
         <div className="logo  w-1/3 text-3xl">Logo</div>
         <div className="menu  w-1/3 text-xl">
           <ul className="flex justify-between">
-            <li>getir</li>
-            <li>götür</li>
-            <li>haydi</li>
+            <NavLink to="/">Anasayfa</NavLink>
+            <NavLink to="/main">Arabalarımız</NavLink>
           </ul>
         </div>
       </nav>

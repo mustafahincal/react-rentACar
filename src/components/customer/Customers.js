@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { useCustomerContext } from "../../context/CustomerContext";
 
 function Customer() {
-  const [customers, setCustomers] = useState([]);
+  const { customers, setCustomers } = useCustomerContext();
   useEffect(() => {
     fetch("https://localhost:44322/api/customers/getall")
       .then((response) => {

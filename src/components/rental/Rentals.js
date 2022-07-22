@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getRentals } from "../../services/rentalService";
+import { useRentalContext } from "../../context/RentalContext";
 
 function Rental() {
-  const [rentals, setRentals] = useState([]);
+  const { rentals, setRentals } = useRentalContext();
   useEffect(() => {
     getRentals().then((result) => setRentals(result.data));
   }, []);
