@@ -7,6 +7,7 @@ import { CarProvider } from "./context/CarContext";
 import { ColorProvider } from "./context/ColorContext";
 import { BrandProvider } from "./context/BrandContext";
 import { RentalProvider } from "./context/RentalContext";
+import { FilterProvider } from "./context/FilterContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,7 +16,9 @@ root.render(
       <ColorProvider>
         <BrandProvider>
           <RentalProvider>
-            <App />
+            <FilterProvider>
+              <App />
+            </FilterProvider>
           </RentalProvider>
         </BrandProvider>
       </ColorProvider>

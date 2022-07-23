@@ -31,7 +31,7 @@ function CarDetails() {
           </div>
           <div className="w-full flex justify-between border-2 py-3 px-20 font-bold">
             <div>Model</div>
-            <div>{selectedCar.modelName ? "hey" : "gelecek"}</div>
+            <div>{selectedCar.modelName}</div>
           </div>
           <div className="w-full flex justify-between border-2 py-3 px-20 font-bold">
             <div>Renk</div>
@@ -52,13 +52,13 @@ function CarDetails() {
         </div>
       </div>
       <div className="w-1/2 pt-20">
-        <div className="bg-white rounded-md w-1/2 m-auto p-10 flex flex-col gap-3">
-          <div className="bg-darkBlue text-white py-2 px-5 rounded-md">
+        <div className="bg-white rounded-md w-1/2 m-auto p-10 flex flex-col gap-3 shadow-item">
+          <NavLink to={`/rentacar/${selectedCar.carId}`} className="btn">
             Aracı Kirala
-          </div>
-          <div className="bg-darkBlue text-white py-2 px-5 rounded-md">
+          </NavLink>
+          <NavLink to={`/editacar/${selectedCar.carId}`} className="btn">
             Aracı Düzenle
-          </div>
+          </NavLink>
         </div>
       </div>
     </div>
