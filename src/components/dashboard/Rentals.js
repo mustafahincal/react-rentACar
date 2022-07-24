@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getRentals } from "../../services/rentalService";
 import { useRentalContext } from "../../context/RentalContext";
 
-function Rental() {
+function Rentals() {
   const { rentals, setRentals } = useRentalContext();
   useEffect(() => {
     getRentals().then((result) => setRentals(result.data));
@@ -21,4 +21,4 @@ function Rental() {
   );
 }
 
-export default Rental;
+export default Rentals;

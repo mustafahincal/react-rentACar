@@ -76,6 +76,13 @@ function Car() {
         <button className="ml-10 btn" onClick={() => handleFilter()}>
           Filtrele
         </button>
+
+        <NavLink
+          to={"/addCar"}
+          className="ml-7 btn bg-littleDarkBlue text-white font-bold"
+        >
+          Araba Ekle
+        </NavLink>
       </div>
 
       <div className="grid grid-cols-12 gap-7">

@@ -4,10 +4,13 @@ import Home from "./components/home/Home";
 import Main from "./components/main/Main";
 import CarDetails from "./components/car/CarDetails";
 import RentACar from "./components/car/RentACar";
-import EditACar from "./components/car/EditACar";
+import EditACar from "./components/dashboard/UpdateCar";
 import Payment from "./components/car/Payment";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import Dashboard from "./components/dashboard/Dashboard";
+import AddCar from "./components/dashboard/AddCar";
+import UpdateCar from "./components/dashboard/UpdateCar";
 
 export default function App() {
   return (
@@ -23,6 +26,9 @@ export default function App() {
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="/addCar" element={<AddCar />} />
+          <Route path="/updateCar/:id" element={<UpdateCar />} />
         </Routes>
       </div>
     </>

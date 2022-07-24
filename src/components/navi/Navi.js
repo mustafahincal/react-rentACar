@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
 
 function Navi() {
+  const { isAdmin } = useUserContext();
+
   return (
     <div>
       <nav className="flex justify-between items-center py-5 px-12 bg-darkBlue text-white font-bold">
@@ -15,6 +18,14 @@ function Navi() {
           </ul>
         </div>
         <div>
+          {isAdmin && (
+            <NavLink
+              className="btn bg-littleDarkBlue text-white mr-5"
+              to={"/dashboard"}
+            >
+              Dashboard
+            </NavLink>
+          )}
           <NavLink className="btn bg-gold text-black mr-5" to={"/login"}>
             Giriş Yap
           </NavLink>

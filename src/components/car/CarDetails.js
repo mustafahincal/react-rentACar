@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import defaultImage from "../../assets/default.png";
 import { useCarContext } from "../../context/CarContext";
+import { useUserContext } from "../../context/UserContext";
 import { getCar } from "../../services/carService";
 
 function CarDetails() {
   const apiImagesUrl = "https://localhost:44322/uploads/images/";
   const { selectedCar, setSelectedCar } = useCarContext();
+  const { isAdmin } = useUserContext();
   const { id } = useParams();
   useEffect(() => {
     getCar(id).then((result) => setSelectedCar(result.data[0]));
@@ -56,9 +58,14 @@ function CarDetails() {
           <NavLink to={`/rentacar/${selectedCar.carId}`} className="btn">
             Aracı Kirala
           </NavLink>
-          <NavLink to={`/editacar/${selectedCar.carId}`} className="btn">
-            Aracı Düzenle
-          </NavLink>
+          {isAdmin && (
+            <NavLink
+              to={`/updateCar/${selectedCar.carId}`}
+              className="btn bg-littleDarkBlue font-bold"
+            >
+              Aracı Düzenle
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

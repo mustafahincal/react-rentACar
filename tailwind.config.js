@@ -10,6 +10,8 @@ module.exports = {
         gold: "#FFD204",
         crimson: "#f1356d",
         darkBlue: "#32445A",
+        littleDarkBlue: "#7189BF",
+        orange: "#F37878",
       },
       boxShadow: {
         item: "1px 0px 10px 3px rgba(0, 0, 0, 0.1)",
