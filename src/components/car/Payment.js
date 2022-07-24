@@ -2,7 +2,7 @@ import React from "react";
 
 function Payment() {
   return (
-    <div className="w-2/3 m-auto py-10 shadow-item mt-20">
+    <div className="w-2/3 m-auto py-10 shadow-item mt-20 bg-white">
       <div className="w-2/3 m-auto">
         <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
           Ödeme Bilgileri

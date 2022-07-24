@@ -14,7 +14,7 @@ function CarDetails() {
 
   return (
     <div className="p-16 flex justify-between">
-      <div className="w-1/2  bg-white rounded-md shadow-item">
+      <div className="w-1/2 mb-16  bg-white rounded-md shadow-item">
         <img
           src={
             selectedCar.imagePath
