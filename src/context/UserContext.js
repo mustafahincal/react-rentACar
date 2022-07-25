@@ -5,14 +5,14 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(true);
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUsers] = useState({});
+  const [selectedUser, setSelectedUser] = useState({});
   const values = {
     isAdmin,
     setIsAdmin,
     users,
     setUsers,
     selectedUser,
-    setSelectedUsers,
+    setSelectedUser,
   };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

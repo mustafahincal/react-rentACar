@@ -4,6 +4,7 @@ const CreditCardContext = createContext();
 
 export const CreditCardProvider = ({ children }) => {
   const [creditCards, setCreditCards] = useState([]);
+  const [selectedCreditCard, setSelectedCreditCard] = useState();
 
   const values = {
     creditCards,

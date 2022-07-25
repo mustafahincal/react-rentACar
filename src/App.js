@@ -12,6 +12,8 @@ import Dashboard from "./components/dashboard/Dashboard";
 import AddCar from "./components/dashboard/AddCar";
 import UpdateCar from "./components/dashboard/UpdateCar";
 import { ToastContainer } from "react-toastify";
+import UpdateUser from "./components/dashboard/UpdateUser";
+import UpdateCreditCard from "./components/dashboard/UpdateCreditCard";
 
 export default function App() {
   return (
@@ -30,6 +32,8 @@ export default function App() {
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/addCar" element={<AddCar />} />
           <Route path="/updateCar/:id" element={<UpdateCar />} />
+          <Route path="/updateUser/:id" element={<UpdateUser />} />
+          <Route path="/updateCreditCard/:id" element={<UpdateCreditCard />} />
         </Routes>
       </div>
       <ToastContainer

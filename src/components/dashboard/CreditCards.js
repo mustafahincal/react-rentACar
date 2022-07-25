@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useCreditCardContext } from "../../context/CreditCardContext";
 import { useUserContext } from "../../context/UserContext";
 import { getCreditCards } from "../../services/creditCardService";
@@ -13,7 +14,7 @@ function CreditCards() {
     <div>
       {creditCards.map((creditCard, index) => (
         <div
-          className="py-3 px-5 bg-white hover:bg-gray-100 rounded w-full mb-3 flex justify-between items-center"
+          className="py-4 px-6 bg-white hover:bg-gray-100 rounded w-full mb-3 flex justify-between items-center"
           key={index}
         >
           <div>{creditCard.cardHolder}</div>
@@ -21,7 +22,12 @@ function CreditCards() {
           <div>{creditCard.expirationDate}</div>
           <div>{creditCard.cvvCode}</div>
           <div>
-            <button className="btn text-sm">Düzenle</button>
+            <NavLink
+              to={`/updateCreditCard/${creditCard.id}`}
+              className="btn text-sm"
+            >
+              Düzenle
+            </NavLink>
           </div>
         </div>
       ))}
