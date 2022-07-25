@@ -11,6 +11,7 @@ import Register from "./components/register/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import AddCar from "./components/dashboard/AddCar";
 import UpdateCar from "./components/dashboard/UpdateCar";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
@@ -31,6 +32,17 @@ export default function App() {
           <Route path="/updateCar/:id" element={<UpdateCar />} />
         </Routes>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

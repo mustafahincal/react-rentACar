@@ -63,7 +63,7 @@ function CarDetails() {
               to={`/updateCar/${selectedCar.carId}`}
               className="btn bg-littleDarkBlue font-bold"
             >
-              Aracı Düzenle
+              Aracı Güncelle
             </NavLink>
           )}
         </div>

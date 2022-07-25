@@ -23,7 +23,7 @@ function Navi() {
               className="btn bg-littleDarkBlue text-white mr-5"
               to={"/dashboard"}
             >
-              Dashboard
+              Kontrol Paneli
             </NavLink>
           )}
           <NavLink className="btn bg-gold text-black mr-5" to={"/login"}>

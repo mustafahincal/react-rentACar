@@ -23,7 +23,7 @@ function Login() {
         </h1>
 
         <form onSubmit={handleSubmit}>
-          <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-xl">
+          <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
             <div>
               <input
                 value={values.email}

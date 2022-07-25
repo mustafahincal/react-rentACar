@@ -18,3 +18,5 @@ export const getCarsByBrandAndByColor = async (brandId, colorId) => {
   );
   return filteredCars;
 };
+
+export const postCar = (data) => post(apiUrl + "/cars/add", data);

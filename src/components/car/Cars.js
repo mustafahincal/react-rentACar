@@ -100,7 +100,7 @@ function Car() {
             <div className="text-center flex flex-col justify-between h-1/3 pt-2">
               <p>{car.brandName + " " + car.modelName}</p>
               <p>{car.colorName}</p>
-              <p className="mt-1">{car.dailyPrice}</p>
+              <p className="mt-1">{car.dailyPrice}₺</p>
             </div>
           </NavLink>
         ))}

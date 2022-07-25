@@ -14,25 +14,25 @@ function DashBoard() {
       <div className="col-span-2 py-10 pr-5">
         <div className="bg-white  rounded-lg flex flex-col shadow-item text-lg">
           <NavLink
-            to="cars"
+            to={"cars"}
             className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
           >
             Arabalar
           </NavLink>
           <NavLink
-            to={`/`}
+            to={`users`}
             className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
           >
             Kullanıcılar
           </NavLink>
           <NavLink
-            to={`/`}
+            to={"creditCards"}
             className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
           >
             Kredi Kartları
           </NavLink>
           <NavLink
-            to={`/`}
+            to={`rentals`}
             className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
           >
             Kiralanan Araçlar
