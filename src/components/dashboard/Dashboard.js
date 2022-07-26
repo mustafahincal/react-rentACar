@@ -12,28 +12,46 @@ function DashBoard() {
   return (
     <div className="grid grid-cols-10 w-11/12 m-auto">
       <div className="col-span-2 py-10 pr-5">
-        <div className="bg-white  rounded-lg flex flex-col shadow-item text-lg">
+        <div className="bg-white  rounded-lg flex flex-col shadow-item ">
           <NavLink
             to={"cars"}
-            className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
+            className="px-2  rounded py-2 border-b-2 hover:bg-gray-200"
           >
             Arabalar
           </NavLink>
           <NavLink
+            to={"/addBrand"}
+            className="px-2 rounded py-2 border-b-2 hover:bg-gray-200"
+          >
+            Markalar
+          </NavLink>
+          <NavLink
+            to={"/addModel"}
+            className="px-2 rounded py-2 border-b-2 hover:bg-gray-200"
+          >
+            Modeller
+          </NavLink>
+          <NavLink
+            to={`/addColor`}
+            className="px-2  rounded py-2 border-b-2 hover:bg-gray-200"
+          >
+            Renkler
+          </NavLink>
+          <NavLink
             to={`users`}
-            className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
+            className="px-2 rounded py-2 border-b-2 hover:bg-gray-200"
           >
             Kullanıcılar
           </NavLink>
           <NavLink
             to={"creditCards"}
-            className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
+            className="px-2  rounded py-2 border-b-2 hover:bg-gray-200"
           >
             Kredi Kartları
           </NavLink>
           <NavLink
             to={`rentals`}
-            className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
+            className="px-2  rounded py-2 border-b-2 hover:bg-gray-200"
           >
             Kiralanan Araçlar
           </NavLink>

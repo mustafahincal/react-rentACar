@@ -89,15 +89,15 @@ function Car() {
         {cars.map((car, index) => (
           <NavLink
             key={index}
-            className="bg-white h-64 rounded-xl col-span-3 shadow-md"
+            className="bg-white h-80 rounded-md col-span-3 shadow-item"
             to={`/cardetails/${car.carId}`}
           >
             <img
               src={car.imagePath ? apiImagesUrl + car.imagePath : defaultImage}
-              className="rounded-t h-2/3 object-cover object-center w-full"
+              className="rounded-t-md h-2/3 object-cover object-center w-full"
               alt=""
             />
-            <div className="text-center flex flex-col justify-between h-1/3 pt-2">
+            <div className="text-center flex flex-col justify-between h-1/3 py-2">
               <p>{car.brandName + " " + car.modelName}</p>
               <p>{car.colorName}</p>
               <p className="mt-1">{car.dailyPrice}₺</p>

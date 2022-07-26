@@ -11,6 +11,7 @@ import { RentalProvider } from "./context/RentalContext";
 import { FilterProvider } from "./context/FilterContext";
 import { UserProvider } from "./context/UserContext";
 import { CreditCardProvider } from "./context/CreditCardContext";
+import { ModelProvider } from "./context/ModelContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,7 +23,9 @@ root.render(
             <FilterProvider>
               <UserProvider>
                 <CreditCardProvider>
-                  <App />
+                  <ModelProvider>
+                    <App />
+                  </ModelProvider>
                 </CreditCardProvider>
               </UserProvider>
             </FilterProvider>

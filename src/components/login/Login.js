@@ -16,7 +16,7 @@ function Login() {
     });
 
   return (
-    <div className="w-2/5 m-auto py-10 shadow-item mt-20 bg-white">
+    <div className="w-2/6 m-auto py-10 shadow-item mt-20 bg-white">
       <div className="w-3/4 m-auto">
         <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
           Giriş Yap

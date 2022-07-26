@@ -19,7 +19,7 @@ function Color() {
       {colors.map((color) => (
         <NavLink
           to={`/main/cars/color/${color.id}`}
-          className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
+          className="px-2  rounded py-2 border-b-2"
           key={color.id}
         >
           {color.name}

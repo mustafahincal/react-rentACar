@@ -4,10 +4,13 @@ const RentalContext = createContext();
 
 export const RentalProvider = ({ children }) => {
   const [rentals, setRentals] = useState([]);
+  const [selectedRental, setSelectedRental] = useState({});
 
   const values = {
     rentals,
     setRentals,
+    selectedRental,
+    setSelectedRental,
   };
 
   return (

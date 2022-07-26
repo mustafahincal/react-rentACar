@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { UserSchema } from "../../validations/userSchema";
-import defaultImage from "../../assets/default.png";
-import { useUserContext } from "../../context/UserContext";
+import { UserSchema } from "../../../validations/userSchema";
+import { useUserContext } from "../../../context/UserContext";
 import { useParams } from "react-router-dom";
-import { getUsersById } from "../../services/userService";
+import { getUsersById } from "../../../services/userService";
 
 function UpdateUser() {
   const { selectedUser, setSelectedUser } = useUserContext();

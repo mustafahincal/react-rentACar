@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getRentalDetails, getRentals } from "../../services/rentalService";
 import { useRentalContext } from "../../context/RentalContext";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 function Rentals() {
   const { rentals, setRentals } = useRentalContext();
@@ -12,7 +13,7 @@ function Rentals() {
     <div>
       {rentals.map((rental, index) => (
         <div
-          className="py-3 px-5 bg-white hover:bg-gray-100 rounded w-full mb-3 flex justify-between items-center"
+          className="py-4 px-6 bg-white hover:bg-gray-100 rounded w-full mb-3 flex justify-between items-center"
           key={index}
         >
           <div>{rental.brandName + " " + rental.modelName}</div>
@@ -22,7 +23,12 @@ function Rentals() {
           <div>{moment(rental.returnDate).format("DD-MM-YYYY")}</div>
           <div>{rental.amount}₺</div>
           <div>
-            <button className="btn text-sm">Düzenle</button>
+            <NavLink
+              to={`/updateRental/${rental.carId}`}
+              className="btn text-sm"
+            >
+              Düzenle
+            </NavLink>
           </div>
         </div>
       ))}

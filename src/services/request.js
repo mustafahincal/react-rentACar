@@ -6,6 +6,7 @@ function request(url, data = false, method = "GET") {
         "Content-Type": "application/json",
       },
     };
+
     if (data && method == "POST") {
       options.body = JSON.stringify(data);
     }

@@ -19,7 +19,7 @@ function Brand() {
       {brands.map((brand) => (
         <NavLink
           to={`/main/cars/brand/${brand.id}`}
-          className="px-2 hover:bg-gray-200 rounded py-2 border-b-2"
+          className={"px-2 rounded py-2 border-b-2  hover:bg-gray-200"}
           key={brand.id}
         >
           {brand.name}

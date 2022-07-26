@@ -1,14 +1,9 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { UserSchema } from "../../validations/userSchema";
-import defaultImage from "../../assets/default.png";
-import { useUserContext } from "../../context/UserContext";
 import { useParams } from "react-router-dom";
-import { getUsersById } from "../../services/userService";
-import { useCreditCardContext } from "../../context/CreditCardContext";
-import { getCreditCardsById } from "../../services/creditCardService";
-import { CreditCardSchema } from "../../validations/creditCardSchema";
-import { getCreditCardById } from "../../services/creditCardService";
+import { useCreditCardContext } from "../../../context/CreditCardContext";
+import { CreditCardSchema } from "../../../validations/creditCardSchema";
+import { getCreditCardById } from "../../../services/creditCardService";
 
 function UpdateCreditCard() {
   const { selectedCreditCard, setSelectedCreditCard } = useCreditCardContext();
@@ -34,24 +29,24 @@ function UpdateCreditCard() {
 
   return (
     <div className="flex justify-between items-center p-16">
-      {/* <div className="w-1/3  mx-auto  bg-white rounded-md shadow-item ">
+      <div className="w-1/3  mx-auto  bg-white rounded-md shadow-item ">
         <div className="w-full flex justify-between border-2 py-3 px-10 font-bold">
           <div>Kart Üzerindeki İsim</div>
-          <div>{selectedCreditCard.cardHolder}</div>
+          <div>{selectedCreditCard?.cardHolder}</div>
         </div>
         <div className="w-full flex justify-between border-2 py-3 px-10 font-bold">
           <div>Kart Numarası</div>
-          <div>{selectedCreditCard.cardNumber}</div>
+          <div>{selectedCreditCard?.cardNumber}</div>
         </div>
         <div className="w-full flex justify-between border-2 py-3 px-10 font-bold">
           <div>Son Kullanım Tarihi</div>
-          <div>{selectedCreditCard.expirationDate}</div>
+          <div>{selectedCreditCard?.expirationDate}</div>
         </div>
         <div className="w-full flex justify-between border-2 py-3 px-10 font-bold">
           <div>CVV/CVC</div>
-          <div>{selectedCreditCard.cvvCode}</div>
+          <div>{selectedCreditCard?.cvvCode}</div>
         </div>
-      </div> */}
+      </div>
 
       <div className="w-1/2  py-10 shadow-item  bg-white">
         <div className="w-3/4 m-auto">

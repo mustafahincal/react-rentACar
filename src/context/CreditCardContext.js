@@ -9,6 +9,8 @@ export const CreditCardProvider = ({ children }) => {
   const values = {
     creditCards,
     setCreditCards,
+    selectedCreditCard,
+    setSelectedCreditCard,
   };
 
   return (

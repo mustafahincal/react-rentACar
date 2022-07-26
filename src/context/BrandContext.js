@@ -3,11 +3,13 @@ import { createContext, useContext, useState } from "react";
 const BrandContext = createContext();
 
 export const BrandProvider = ({ children }) => {
-  const [brands, setBrands] = useState([]);
+  const [brands, setBrands, selectedBrand, setSelectedBrand] = useState([]);
 
   const values = {
     brands,
     setBrands,
+    selectedBrand,
+    setSelectedBrand,
   };
 
   return (
