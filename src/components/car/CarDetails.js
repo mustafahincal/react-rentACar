@@ -16,7 +16,7 @@ function CarDetails() {
 
   return (
     <div className="p-16 flex justify-between">
-      <div className="w-1/2 mb-16  bg-white rounded-md shadow-item">
+      <div className="w-2/5 mb-16  bg-white rounded-md shadow-item mx-auto">
         <img
           src={
             selectedCar.imagePath
@@ -54,14 +54,14 @@ function CarDetails() {
         </div>
       </div>
       <div className="w-1/2 pt-20">
-        <div className="bg-white rounded-md w-1/2 m-auto p-10 flex flex-col gap-3 shadow-item">
-          <NavLink to={`/rentacar/${selectedCar.carId}`} className="btn">
+        <div className="bg-white rounded-md w-1/2 m-auto p-10 flex flex-col gap-3 shadow-item text-center">
+          <NavLink to={`/rentacar/${selectedCar.carId}`} className="btn  py-3">
             Aracı Kirala
           </NavLink>
           {isAdmin && (
             <NavLink
               to={`/updateCar/${selectedCar.carId}`}
-              className="btn bg-littleDarkBlue font-bold"
+              className="btn bg-littleDarkBlue font-bold py-3"
             >
               Aracı Güncelle
             </NavLink>

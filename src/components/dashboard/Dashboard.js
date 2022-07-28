@@ -1,8 +1,9 @@
 import React from "react";
 import Cars from "../car/Cars";
-import Brands from "..//brand/Brands";
-import Colors from "../color/Colors";
 import { Routes, Route, NavLink } from "react-router-dom";
+import AddBrand from "./add/AddBrand";
+import AddColor from "./add/AddColor";
+import AddModel from "./add/AddModel";
 
 import CreditCards from "./CreditCards";
 import Rentals from "./Rentals";
@@ -20,19 +21,19 @@ function DashBoard() {
             Arabalar
           </NavLink>
           <NavLink
-            to={"/addBrand"}
+            to={"addBrand"}
             className="px-2 rounded py-2 border-b-2 hover:bg-gray-200"
           >
             Markalar
           </NavLink>
           <NavLink
-            to={"/addModel"}
+            to={"addModel"}
             className="px-2 rounded py-2 border-b-2 hover:bg-gray-200"
           >
             Modeller
           </NavLink>
           <NavLink
-            to={`/addColor`}
+            to={`addColor`}
             className="px-2  rounded py-2 border-b-2 hover:bg-gray-200"
           >
             Renkler
@@ -63,6 +64,9 @@ function DashBoard() {
           <Route path="/users" element={<Users />} />
           <Route path="/creditCards" element={<CreditCards />} />
           <Route path="/rentals" element={<Rentals />} />
+          <Route path="/addBrand" element={<AddBrand />} />
+          <Route path="/addModel" element={<AddModel />} />
+          <Route path="/addColor" element={<AddColor />} />
         </Routes>
       </div>
     </div>

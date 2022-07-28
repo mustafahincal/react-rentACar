@@ -1,8 +1,14 @@
 import React from "react";
 import { useFormik } from "formik";
 import { RegisterSchema } from "../../validations/registerSchema";
+import { register } from "../../services/authService";
+import { useAuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import { setToLocalStorage } from "../../services/localStorageService";
 
 function Register() {
+  let registerDto = {};
+  const { setIsLogged } = useAuthContext();
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
@@ -13,10 +19,28 @@ function Register() {
         passwordConfirm: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        register(setRegisterDto())
+          .then((response) => {
+            if (response.success) {
+              setToLocalStorage("token", response.data.token);
+              toast.success("Kayıt başarılı");
+              setIsLogged(true);
+            }
+          })
+          .catch((err) => toast.error(err.message));
       },
       validationSchema: RegisterSchema,
     });
+
+  const setRegisterDto = () => {
+    registerDto = {
+      firstName: values.name,
+      lastName: values.surname,
+      email: values.email,
+      password: values.password,
+    };
+    return registerDto;
+  };
 
   return (
     <div className="w-2/6 m-auto py-10 shadow-item mt-20 bg-white">

@@ -15,9 +15,7 @@ import { ToastContainer } from "react-toastify";
 import UpdateUser from "./components/dashboard/update/UpdateUser";
 import UpdateCreditCard from "./components/dashboard/update/UpdateCreditCard";
 import UpdateRental from "./components/dashboard/update/UpdateRental";
-import AddBrand from "./components/dashboard/add/AddBrand";
-import AddColor from "./components/dashboard/add/AddColor";
-import AddModel from "./components/dashboard/add/AddModel";
+import Profile from "./components/profile/Profile";
 
 export default function App() {
   return (
@@ -35,13 +33,11 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/addCar" element={<AddCar />} />
-          <Route path="/addBrand" element={<AddBrand />} />
-          <Route path="/addModel" element={<AddModel />} />
-          <Route path="/addColor" element={<AddColor />} />
           <Route path="/updateCar/:id" element={<UpdateCar />} />
           <Route path="/updateUser/:id" element={<UpdateUser />} />
           <Route path="/updateCreditCard/:id" element={<UpdateCreditCard />} />
           <Route path="/updateRental/:id" element={<UpdateRental />} />
+          <Route path="/profile/*" element={<Profile />} />
         </Routes>
       </div>
       <ToastContainer

@@ -3,12 +3,9 @@ import { createContext, useContext, useState } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(true);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState({});
   const values = {
-    isAdmin,
-    setIsAdmin,
     users,
     setUsers,
     selectedUser,

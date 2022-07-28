@@ -1,8 +1,14 @@
 import React from "react";
 import { useFormik } from "formik";
 import { LoginSchema } from "../../validations/loginSchema";
+import { login } from "../../services/authService";
+import { useAuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import { setToLocalStorage } from "../../services/localStorageService";
 
 function Login() {
+  const { setIsLogged } = useAuthContext();
+
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
@@ -10,7 +16,17 @@ function Login() {
         password: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        login(values)
+          .then((response) => {
+            if (response.success) {
+              setIsLogged(true);
+              toast.success(response.message);
+              setToLocalStorage("token", response.data.token);
+              values.email = "";
+              values.password = "";
+            }
+          })
+          .catch((err) => toast.error(err.message));
       },
       validationSchema: LoginSchema,
     });

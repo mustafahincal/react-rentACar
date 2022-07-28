@@ -2,10 +2,25 @@ import React from "react";
 import { useCarContext } from "../../context/CarContext";
 import defaultImage from "../../assets/default.png";
 import { NavLink } from "react-router-dom";
+import { RentalSchema } from "../../validations/rentalSchema";
+import { useFormik } from "formik";
 
 function RentACar() {
-  const { selectedCar, returnDate, setReturnDate, rentDate, setRentDate } =
-    useCarContext();
+  const { selectedCar } = useCarContext();
+
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        rentDate: "",
+        returnDate: "",
+        amount: "",
+      },
+      onSubmit: (values) => {
+        console.log(values);
+      },
+      validationSchema: RentalSchema,
+    });
+
   const apiImagesUrl = "https://localhost:44322/uploads/images/";
   return (
     <div className="py-20">
@@ -49,11 +64,13 @@ function RentACar() {
                 Kiralama Tarihi
               </label>
               <input
-                type="text"
-                value={rentDate}
-                onChange={(e) => setRentDate(e.target.value)}
-                className="text-darkBlue py-1 px-3"
-                placeholder="aa//mm//yy"
+                value={values.rentDate}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="rentDate"
+                type="date"
+                id="rentDate"
+                className="text-darkBlue py-2 px-4 w-3/4"
               />
             </div>
             <div className="flex justify-between items-center mt-5">
@@ -61,11 +78,13 @@ function RentACar() {
                 Teslim Tarihi
               </label>
               <input
-                type="text"
-                value={returnDate}
-                onChange={(e) => setReturnDate(e.target.value)}
-                className="text-darkBlue py-1 px-3"
-                placeholder="aa//mm//yy"
+                value={values.returnDate}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="returnDate"
+                type="date"
+                id="returnDate"
+                className="text-darkBlue py-2 px-4 w-3/4"
               />
             </div>
           </div>

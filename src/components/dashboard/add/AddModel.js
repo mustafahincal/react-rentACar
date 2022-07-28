@@ -2,21 +2,36 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { getColors } from "../../../services/colorService";
 import { useModelContext } from "../../../context/ModelContext";
-import { getModels } from "../../../services/modelService";
+import { getModels, postModel } from "../../../services/modelService";
+import { useBrandContext } from "../../../context/BrandContext";
+import { getBrands } from "../../../services/brandService";
+import { toast } from "react-toastify";
 
 function AddModel() {
   const { models, setModels } = useModelContext();
+  const { brands, setBrands } = useBrandContext();
+
   useEffect(() => {
     getModels().then((result) => setModels(result.data));
+    getBrands().then((result) => setBrands(result.data));
   }, []);
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        model: "",
+        brandId: "",
+        name: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        postModel(values)
+          .then((response) => {
+            if (response.success) {
+              toast.success(response.message);
+            }
+          })
+          .catch((err) =>
+            err.Errors.map((error) => toast.error(error.ErrorMessage))
+          );
       },
     });
 
@@ -35,25 +50,44 @@ function AddModel() {
         </div>
       </div>
 
-      <div className="w-5/12 mx-auto  py-10 shadow-item  bg-white">
+      <div className="w-1/2 mx-auto  py-10 shadow-item  bg-white">
         <div className="w-3/4 m-auto">
           <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
             Model Ekle
           </h1>
           <form onSubmit={handleSubmit}>
             <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
-              <input
-                value={values.model}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                name="color"
-                type="text"
-                className="text-darkBlue py-2 px-4 w-full"
-                placeholder="Model"
-              />
-              {errors.model && touched.model && (
-                <div className="text-red-400 my-2 text-sm">{errors.model}</div>
-              )}
+              <div>
+                <select
+                  className="text-darkBlue py-2 px-3 w-full"
+                  name="brandId"
+                  value={values.brandId}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                >
+                  <option value={0}>Marka Seçiniz</option>
+                  {brands.map((brand) => (
+                    <option key={brand.id} value={brand.id}>
+                      {brand.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mt-5">
+                <input
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="name"
+                  type="text"
+                  className="text-darkBlue py-2 px-4 w-full"
+                  placeholder="Model"
+                />
+                {errors.name && touched.name && (
+                  <div className="text-red-400 my-2 text-sm">{errors.name}</div>
+                )}
+              </div>
             </div>
             <div className="text-right mt-5">
               <button type="submit" className="btn text-lg">

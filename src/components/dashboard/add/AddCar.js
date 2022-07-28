@@ -8,7 +8,7 @@ import { useColorContext } from "../../../context/ColorContext";
 import { useModelContext } from "../../../context/ModelContext";
 import { getBrands } from "../../../services/brandService";
 import { getColors } from "../../../services/colorService";
-import { getModels } from "../../../services/modelService";
+import { getModels, getModelsByBrandId } from "../../../services/modelService";
 
 function AddCar() {
   const { brands, setBrands } = useBrandContext();
@@ -19,8 +19,11 @@ function AddCar() {
   useEffect(() => {
     getBrands().then((result) => setBrands(result.data));
     getColors().then((result) => setColors(result.data));
-    getModels().then((result) => setModels(result.data));
   }, []);
+
+  useEffect(() => {
+    getModelsByBrandId(selectedBrand).then((result) => setModels(result.data));
+  }, [selectedBrand]);
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
@@ -63,6 +66,7 @@ function AddCar() {
                 value={values.brandId}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                onClick={() => setSelectedBrand(values.brandId)}
               >
                 <option value={0}>Marka Seçiniz</option>
                 {brands.map((brand) => (
@@ -181,7 +185,16 @@ function AddCar() {
             Resim Ekle
           </h1>
           <div className=" bg-darkBlue text-gray-100  p-10 text-lg flex justify-center items-center">
-            <input type="file" />
+            <input
+              type="file"
+              className="block w-full text-sm text-slate-300
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-violet-100 file:text-darkBlue
+                    hover:file:bg-violet-300 hover:file:text-black
+                    file:cursor-pointer cursor-pointer"
+            />
           </div>
           <div className="text-right mt-5">
             <button onClick={() => handleAddImage()} className="btn text-lg">

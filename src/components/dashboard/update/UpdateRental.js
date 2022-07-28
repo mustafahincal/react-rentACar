@@ -19,8 +19,6 @@ function UpdateRental() {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        carId: "",
-        customerId: "",
         rentDate: "",
         returnDate: "",
         amount: "",
@@ -67,33 +65,8 @@ function UpdateRental() {
           </h1>
           <form onSubmit={handleSubmit}>
             <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
-              <input
-                value={values.carId}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                name="carId"
-                type="number"
-                className="text-darkBlue py-2 px-4 w-full"
-                placeholder="Arac ID"
-              />
-              {errors.carId && touched.carId && (
-                <div className="text-red-400 my-2 text-sm">{errors.carId}</div>
-              )}
-              <input
-                value={values.customerId}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                name="customerId"
-                type="number"
-                className="text-darkBlue py-2 px-4 w-full mt-5"
-                placeholder="Müşteri ID"
-              />
-              {errors.customerId && touched.customerId && (
-                <div className="text-red-400 my-2 text-sm">
-                  {errors.customerId}
-                </div>
-              )}
-              <div className="mt-5">
+              <span className="text-md">Kiralama Tarihi</span>
+              <div>
                 <input
                   value={values.rentDate}
                   onChange={handleChange}
@@ -109,6 +82,7 @@ function UpdateRental() {
                 )}
               </div>
               <div className="mt-5">
+                <span className="text-md">Geri Dönüş Tarihi</span>
                 <input
                   value={values.returnDate}
                   onChange={handleChange}
@@ -124,6 +98,7 @@ function UpdateRental() {
                 )}
               </div>
               <div className="mt-5">
+                <span className="text-md">Ücret</span>
                 <input
                   value={values.amount}
                   onChange={handleChange}

@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { getColors } from "../../../services/colorService";
+import { toast } from "react-toastify";
 import { useColorContext } from "../../../context/ColorContext";
+import { getColors } from "../../../services/colorService";
+import { postColor } from "../../../services/colorService";
 
 function AddColor() {
   const { colors, setColors } = useColorContext();
@@ -12,10 +14,18 @@ function AddColor() {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        color: "",
+        name: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        postColor(values)
+          .then((response) => {
+            if (response.success) {
+              toast.success(response.message);
+            }
+          })
+          .catch((err) =>
+            err.Errors.map((error) => toast.error(error.ErrorMessage))
+          );
       },
     });
 
@@ -34,7 +44,7 @@ function AddColor() {
         </div>
       </div>
 
-      <div className="w-5/12 mx-auto  py-10 shadow-item  bg-white">
+      <div className="w-1/2 mx-auto  py-10 shadow-item  bg-white">
         <div className="w-3/4 m-auto">
           <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
             Renk Ekle
@@ -42,16 +52,16 @@ function AddColor() {
           <form onSubmit={handleSubmit}>
             <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
               <input
-                value={values.color}
+                value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                name="color"
+                name="name"
                 type="text"
                 className="text-darkBlue py-2 px-4 w-full"
                 placeholder="Renk"
               />
-              {errors.color && touched.color && (
-                <div className="text-red-400 my-2 text-sm">{errors.color}</div>
+              {errors.name && touched.name && (
+                <div className="text-red-400 my-2 text-sm">{errors.name}</div>
               )}
             </div>
             <div className="text-right mt-5">

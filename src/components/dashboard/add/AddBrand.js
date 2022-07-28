@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { getCreditCardById } from "../../../services/creditCardService";
 import { useBrandContext } from "../../../context/BrandContext";
-import { getBrands } from "../../../services/brandService";
+import { getBrands, postBrand } from "../../../services/brandService";
+import { toast } from "react-toastify";
 
 function AddBrand() {
   const { brands, setBrands } = useBrandContext();
@@ -13,10 +14,18 @@ function AddBrand() {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        brand: "",
+        name: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        postBrand(values)
+          .then((response) => {
+            if (response.success) {
+              toast.success(response.message);
+            }
+          })
+          .catch((err) =>
+            err.Errors.map((error) => toast.error(error.ErrorMessage))
+          );
       },
     });
 
@@ -35,7 +44,7 @@ function AddBrand() {
         </div>
       </div>
 
-      <div className="w-5/12 mx-auto  py-10 shadow-item  bg-white">
+      <div className="w-1/2 mx-auto  py-10 shadow-item  bg-white">
         <div className="w-3/4 m-auto">
           <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
             Marka Ekle
@@ -43,16 +52,16 @@ function AddBrand() {
           <form onSubmit={handleSubmit}>
             <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
               <input
-                value={values.brand}
+                value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                name="brand"
+                name="name"
                 type="text"
                 className="text-darkBlue py-2 px-4 w-full"
                 placeholder="Marka"
               />
-              {errors.brand && touched.brand && (
-                <div className="text-red-400 my-2 text-sm">{errors.brand}</div>
+              {errors.name && touched.name && (
+                <div className="text-red-400 my-2 text-sm">{errors.name}</div>
               )}
             </div>
             <div className="text-right mt-5">

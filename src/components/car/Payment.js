@@ -19,13 +19,13 @@ function Payment() {
     });
 
   return (
-    <div className="w-2/3 m-auto py-10 shadow-item mt-20 bg-white">
+    <div className="w-2/5 m-auto py-12 px-16 shadow-item mt-20 bg-white">
       <form onSubmit={handleSubmit}>
-        <div className="w-2/3 m-auto">
+        <div className="w-full m-auto">
           <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
             Ödeme Bilgileri
           </h1>
-          <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-20 py-10">
+          <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-10">
             <div className="flex justify-between items-center">
               <div>
                 <input

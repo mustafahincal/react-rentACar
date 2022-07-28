@@ -3,14 +3,14 @@ import { useFormik } from "formik";
 import { UserSchema } from "../../../validations/userSchema";
 import { useUserContext } from "../../../context/UserContext";
 import { useParams } from "react-router-dom";
-import { getUsersById } from "../../../services/userService";
+import { getUserById } from "../../../services/userService";
 
 function UpdateUser() {
   const { selectedUser, setSelectedUser } = useUserContext();
   const { id } = useParams();
 
   useEffect(() => {
-    getUsersById(id).then((result) => setSelectedUser(result.data));
+    getUserById(8).then((result) => setSelectedUser(result.data));
   }, []);
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
