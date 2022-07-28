@@ -15,7 +15,6 @@ function request(url, data = false, method = "GET") {
     }
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(response);
     if (response.ok) {
       resolve(result);
     } else {

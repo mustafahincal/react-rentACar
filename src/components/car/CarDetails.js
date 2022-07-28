@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import defaultImage from "../../assets/default.png";
+import { useAuthContext } from "../../context/AuthContext";
 import { useCarContext } from "../../context/CarContext";
-import { useUserContext } from "../../context/UserContext";
 import { getCar } from "../../services/carService";
 
 function CarDetails() {
   const apiImagesUrl = "https://localhost:44322/uploads/images/";
   const { selectedCar, setSelectedCar } = useCarContext();
-  const { isAdmin } = useUserContext();
+  const { isAdmin } = useAuthContext();
   const { id } = useParams();
   useEffect(() => {
     getCar(id).then((result) => setSelectedCar(result.data[0]));

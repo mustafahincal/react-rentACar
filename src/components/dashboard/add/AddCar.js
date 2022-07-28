@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { CarSchema } from "../../../validations/carSchema";
 import { toast } from "react-toastify";
-import { postCar } from "../../../services/carService";
+import { addCar } from "../../../services/carService";
 import { useBrandContext } from "../../../context/BrandContext";
 import { useColorContext } from "../../../context/ColorContext";
 import { useModelContext } from "../../../context/ModelContext";
@@ -36,7 +36,7 @@ function AddCar() {
         dailyPrice: "",
       },
       onSubmit: (values) => {
-        postCar(values)
+        addCar(values)
           .then((response) => {
             if (response.success) {
               toast.success(response.message);
