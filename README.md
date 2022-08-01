@@ -40,11 +40,11 @@
 
 ## Marka Ekle (Add Brand)
 
-![](imagesForReadme/addBrand.png)
+![](imagesForReadme/addbrand.png)
 
 ## Model Ekle (Add Model)
 
-![](imagesForReadme/addModel.png)
+![](imagesForReadme/addmodel.png)
 
 # Getting Started with Create React App
 
