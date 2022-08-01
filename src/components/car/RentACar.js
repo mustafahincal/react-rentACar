@@ -120,12 +120,9 @@ function RentACar() {
               </div>
             </div>
             <div className="text-right mt-5">
-              {/* <NavLink  to={`/payment/${selectedCar.carId}`} className="btn">
-              Kirala
-            </NavLink> */}
-              <button type="submit" className="btn">
+              <NavLink to={`/payment/${selectedCar.carId}`} className="btn">
                 Kirala
-              </button>
+              </NavLink>
             </div>
           </form>
         </div>

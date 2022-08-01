@@ -1,3 +1,51 @@
+# Multitier architecture project
+
+# Daily car rental simulation
+
+<a href = "https://www.linkedin.com/in/mustafahincal/"><img src = "https://marka-logo.com/wp-content/uploads/2020/04/Linkedin-Logo.png" width = "85" height = "50" alt = "My Linkedin Profile"/></a>
+
+### E-mail Address: mustafahncal@gmail.com
+
+# Arabalar (Cars)
+
+![](ImagesForReadme/arabalar.png)
+
+# Giriş Yap (Login)
+
+![](ImagesForReadme/login.png)
+
+# Kayıt Ol (Register)
+
+![](ImagesForReadme/register.png)
+
+# Araba Detayları (Car Details)
+
+![](ImagesForReadme/cardetails.png)
+
+# Araba Kirala (Rent A Car)
+
+![](ImagesForReadme/rent.png)
+
+# Ödeme (Payment)
+
+![](ImagesForReadme/payment.png)
+
+# Kullanıcıyı Düzenle (Update User)
+
+![](ImagesForReadme/updateuser.png)
+
+# Araba Ekle (Add Car)
+
+![](ImagesForReadme/addCar.png)
+
+# Marka Ekle (Add Brand)
+
+![](ImagesForReadme/addBrand.png)
+
+# Model Ekle (Add Model)
+
+![](ImagesForReadme/addModel.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -112,10 +112,10 @@ function Payment() {
               </div>
             </div>
           </div>
-          <div className="mt-5 flex justify-between">
-            <div className="bg-darkBlue py-2 px-4 text-white rounded text-lg">
+          <div className="mt-5 text-right">
+            {/* <div className="bg-darkBlue py-2 px-4 text-white rounded text-lg">
               Tutar : 1000tl
-            </div>
+            </div> */}
 
             <button type="submit" className="btn text-lg">
               Ödemeyi Tamamla
