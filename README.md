@@ -6,17 +6,27 @@
 
 ### E-mail Address: mustafahncal@gmail.com
 
-# Arabalar (Cars)
+## Arabalar (Cars)
 
-![](ImagesForReadme/arabalar.png)
+![](imagesForReadme/arabalar.png)
 
-# Araba Detayları (Car Details)
+## Giriş Yap (Login)
 
-![](ImagesForReadme/cardetails.png)
+![](imagesForReadme/login.png)
 
-# Araba Kirala (Rent A Car)
+## Kayıt Ol (Register)
 
-![](ImagesForReadme/rent.png)
+![](imagesForReadme/register.png)
+
+## Araba Detayları (Car Details)
+
+![](imagesForReadme/cardetails.png)
+
+## Araba Kirala (Rent A Car)
+
+![](imagesForReadme/rent.png)
+
+<<<<<<< HEAD
 
 # Giriş Yap (Login)
 
@@ -24,15 +34,37 @@
 
 # Kayıt Ol (Register)
 
-![](ImagesForReadme/register.png)
+# ![](ImagesForReadme/register.png)
 
-# Kullanıcıyı Düzenle (Update User)
+## Ödeme (Payment)
 
-![](ImagesForReadme/updateuser.png)
+![](imagesForReadme/payment.png)
+
+> > > > > > > 3bc018ee6c06ed7c318fce3c466855d02126eca3
+
+## Kullanıcıyı Düzenle (Update User)
+
+![](imagesForReadme/updateuser.png)
+
+<<<<<<< HEAD
 
 # Model Ekle (Add Model)
 
-![](ImagesForReadme/addModel.png)
+=======
+
+## Araba Ekle (Add Car)
+
+![](imagesForReadme/addCar.png)
+
+## Marka Ekle (Add Brand)
+
+![](imagesForReadme/addbrand.png)
+
+## Model Ekle (Add Model)
+
+> > > > > > > 3bc018ee6c06ed7c318fce3c466855d02126eca3
+
+![](imagesForReadme/addmodel.png)
 
 # Getting Started with Create React App
 
