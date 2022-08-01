@@ -26,31 +26,15 @@
 
 ![](imagesForReadme/rent.png)
 
-<<<<<<< HEAD
-
-# Giriş Yap (Login)
-
-![](ImagesForReadme/login.png)
-
-# Kayıt Ol (Register)
-
-# ![](ImagesForReadme/register.png)
-
 ## Ödeme (Payment)
 
 ![](imagesForReadme/payment.png)
 
-> > > > > > > 3bc018ee6c06ed7c318fce3c466855d02126eca3
 
 ## Kullanıcıyı Düzenle (Update User)
 
 ![](imagesForReadme/updateuser.png)
 
-<<<<<<< HEAD
-
-# Model Ekle (Add Model)
-
-=======
 
 ## Araba Ekle (Add Car)
 
@@ -61,8 +45,6 @@
 ![](imagesForReadme/addbrand.png)
 
 ## Model Ekle (Add Model)
-
-> > > > > > > 3bc018ee6c06ed7c318fce3c466855d02126eca3
 
 ![](imagesForReadme/addmodel.png)
 
