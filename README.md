@@ -68,7 +68,7 @@
 
 ## Kiralamaları Düzenle (Update Rentals)
 
-![](imagesForReadme/addColor.png)
+![](imagesForReadme/updateRentals.png)
 
 # Getting Started with Create React App
 
