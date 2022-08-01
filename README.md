@@ -30,11 +30,9 @@
 
 ![](imagesForReadme/payment.png)
 
-
 ## Kullanıcıyı Düzenle (Update User)
 
 ![](imagesForReadme/updateuser.png)
-
 
 ## Araba Ekle (Add Car)
 
@@ -55,8 +53,6 @@
 ## Araba Güncelle (Update Car)
 
 ![](imagesForReadme/updateCar.png)
-
-
 
 # Getting Started with Create React App
 
