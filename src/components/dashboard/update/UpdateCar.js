@@ -82,7 +82,7 @@ function UpdateCar() {
   };
 
   return (
-    <div className="flex justify-between items-center p-16">
+    <div className="flex justify-between items-center px-16 py-8">
       <div className="w-2/5  mx-auto  bg-white rounded-md shadow-item ">
         <img
           src={
