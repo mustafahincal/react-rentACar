@@ -34,10 +34,6 @@
 
 ![](imagesForReadme/updateuser.png)
 
-## Arabalar - Admin (Cars - Admin)
-
-![](imagesForReadme/arabalarAdmin.png)
-
 ## Araba Ekle (Add Car)
 
 ![](imagesForReadme/addCar.png)
