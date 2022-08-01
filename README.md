@@ -48,7 +48,7 @@
 
 ## Araba Detayları - Admin (Car Details - Admin)
 
-![](imagesForReadme/carDetailsAdmin.png)
+![](imagesForReadme/cardetailsAdmin.png)
 
 ## Araba Güncelle (Update Car)
 
