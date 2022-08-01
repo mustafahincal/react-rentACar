@@ -4,7 +4,7 @@ export const getRentalDetails = () => get(apiUrl + "/Rentals/getrentaldetails");
 export const getRentalDetailsById = (carId) =>
   get(apiUrl + "/Rentals/getrentaldetailsbyid?carId=" + carId);
 
-export const getRentalDetailsByCustomerId = (customerId) =>
-  get(
-    apiUrl + "/Rentals/getrentaldetailsbycustomerid?customerId=" + customerId
-  );
+export const getRentalDetailsByUserId = (userId) =>
+  get(apiUrl + "/Rentals/getrentaldetailsbyuserid?userId=" + userId);
+
+export const addRental = (data) => post(apiUrl + "/Rentals/add", data);

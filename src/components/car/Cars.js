@@ -11,12 +11,14 @@ import { useCarContext } from "../../context/CarContext";
 import { useBrandContext } from "../../context/BrandContext";
 import { useColorContext } from "../../context/ColorContext";
 import { useFilterContext } from "../../context/FilterContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 function Car() {
   const { cars, setCars } = useCarContext();
   const { brandId, colorId } = useParams();
   const { brands } = useBrandContext();
   const { colors } = useColorContext();
+  const { isAdmin } = useAuthContext();
   const { filterByColor, filterByBrand, setFilterByColor, setFilterByBrand } =
     useFilterContext();
 
@@ -77,12 +79,14 @@ function Car() {
           Filtrele
         </button>
 
-        <NavLink
-          to={"/addCar"}
-          className="ml-7 btn bg-littleDarkBlue text-white font-bold"
-        >
-          Araba Ekle
-        </NavLink>
+        {isAdmin && (
+          <NavLink
+            to={"/addCar"}
+            className="ml-7 btn bg-littleDarkBlue text-white font-bold"
+          >
+            Araba Ekle
+          </NavLink>
+        )}
       </div>
 
       <div className="grid grid-cols-12 gap-7">

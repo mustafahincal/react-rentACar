@@ -4,10 +4,13 @@ const CustomerContext = createContext();
 
 export const CustomerProvider = ({ children }) => {
   const [customers, setCustomers] = useState([]);
+  const [seledtedCustomer, setSelectedCustomer] = useState({});
 
   const values = {
     customers,
     setCustomers,
+    seledtedCustomer,
+    setSelectedCustomer,
   };
 
   return (

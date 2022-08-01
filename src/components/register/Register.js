@@ -5,10 +5,16 @@ import { register } from "../../services/authService";
 import { useAuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { setToLocalStorage } from "../../services/localStorageService";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
+import jwtDecode from "jwt-decode";
+import { getUserById } from "../../services/userService";
 
 function Register() {
   let registerDto = {};
+  const { setSelectedUser } = useUserContext();
   const { setIsLogged } = useAuthContext();
+  const navigate = useNavigate();
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
@@ -20,11 +26,21 @@ function Register() {
       },
       onSubmit: (values) => {
         register(setRegisterDto())
-          .then((response) => {
+          .then(async (response) => {
             if (response.success) {
               setToLocalStorage("token", response.data.token);
               toast.success("Kayıt başarılı");
+
+              let decode = await jwtDecode(response.data.token);
+
+              let responseUser = await getUserById(
+                decode[
+                  "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+                ]
+              );
+              setSelectedUser(responseUser.data);
               setIsLogged(true);
+              navigate("/");
             }
           })
           .catch((err) => toast.error(err.message));

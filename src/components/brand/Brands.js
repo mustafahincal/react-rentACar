@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { getBrands } from "../../services/brandService";
+import { getBrands, getBrandsByAxios } from "../../services/brandService";
 import { NavLink } from "react-router-dom";
 import { useBrandContext } from "../../context/BrandContext";
 
 function Brand() {
   const { brands, setBrands } = useBrandContext();
   useEffect(() => {
-    getBrands().then((result) => setBrands(result.data));
+    getBrands()
+      .then((response) => setBrands(response.data))
+      .catch((err) => console.log(err));
   }, []);
   return (
     <div className="bg-white  rounded-lg flex flex-col shadow-item">

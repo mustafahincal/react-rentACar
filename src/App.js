@@ -16,6 +16,7 @@ import UpdateUser from "./components/dashboard/update/UpdateUser";
 import UpdateCreditCard from "./components/dashboard/update/UpdateCreditCard";
 import UpdateRental from "./components/dashboard/update/UpdateRental";
 import Profile from "./components/profile/Profile";
+import Page404 from "./components/page404/Page404";
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/updateCreditCard/:id" element={<UpdateCreditCard />} />
           <Route path="/updateRental/:id" element={<UpdateRental />} />
           <Route path="/profile/*" element={<Profile />} />
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
       <ToastContainer

@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import { getRentalDetailsByCustomerId } from "../../services/rentalService";
+import { getRentalDetailsByUserId } from "../../services/rentalService";
 import { useRentalContext } from "../../context/RentalContext";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
 
 function ProfileRentals() {
   const { rentals, setRentals } = useRentalContext();
+  const { selectedUser } = useUserContext();
   useEffect(() => {
-    getRentalDetailsByCustomerId(2).then((result) => setRentals(result.data));
+    getRentalDetailsByUserId(selectedUser.id).then((result) =>
+      setRentals(result.data)
+    );
   }, []);
   return (
     <div>

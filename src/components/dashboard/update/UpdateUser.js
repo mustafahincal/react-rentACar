@@ -7,11 +7,6 @@ import { getUserById } from "../../../services/userService";
 
 function UpdateUser() {
   const { selectedUser, setSelectedUser } = useUserContext();
-  const { id } = useParams();
-
-  useEffect(() => {
-    getUserById(8).then((result) => setSelectedUser(result.data));
-  }, []);
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({

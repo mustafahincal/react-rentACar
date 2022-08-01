@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCarContext } from "../../context/CarContext";
 import defaultImage from "../../assets/default.png";
 import { NavLink } from "react-router-dom";
 import { RentalSchema } from "../../validations/rentalSchema";
 import { useFormik } from "formik";
+import { useUserContext } from "../../context/UserContext";
+import { getCar } from "../../services/carService";
+import { addRental } from "../../services/rentalService";
+import { toast } from "react-toastify";
 
 function RentACar() {
   const { selectedCar } = useCarContext();
+  const { selectedUser } = useUserContext();
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
+        carId: selectedCar.carId,
+        userId: selectedUser.id,
         rentDate: "",
         returnDate: "",
         amount: "",
       },
       onSubmit: (values) => {
+        addRental(values)
+          .then((response) => {
+            if (response.success) {
+              toast.success("Kiralama işlemi başarılı");
+            }
+          })
+          .catch((err) =>
+            err.Errors.map((error) => toast.error(error.ErrorMessage))
+          );
         console.log(values);
       },
       validationSchema: RentalSchema,
@@ -29,7 +45,7 @@ function RentACar() {
           <h1 className="font-extrabold text-3xl text-black mb-5">
             Araç Bilgileri
           </h1>
-          <div className="w-full flex rounded-md">
+          <div className="w-full flex rounded-l-md">
             <div className="w-1/2">
               <img
                 src={
@@ -58,41 +74,60 @@ function RentACar() {
           <h1 className="font-extrabold text-3xl text-black mb-5">
             Kira Bilgileri
           </h1>
-          <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-20 py-7">
-            <div className="flex justify-between items-center">
-              <label htmlFor="rentDate" className="">
-                Kiralama Tarihi
-              </label>
-              <input
-                value={values.rentDate}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                name="rentDate"
-                type="date"
-                id="rentDate"
-                className="text-darkBlue py-2 px-4 w-3/4"
-              />
+          <form onSubmit={handleSubmit}>
+            <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-7">
+              <div className="flex justify-between items-center">
+                <label htmlFor="rentDate" className="text-left">
+                  Kiralama Tarihi
+                </label>
+                <input
+                  value={values.rentDate}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="rentDate"
+                  type="date"
+                  id="rentDate"
+                  className="text-darkBlue py-2 px-4 w-3/5"
+                />
+              </div>
+              <div className="flex justify-between items-center mt-5">
+                <label htmlFor="returnDate" className="text-left">
+                  Teslim Tarihi
+                </label>
+                <input
+                  value={values.returnDate}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="returnDate"
+                  type="date"
+                  id="returnDate"
+                  className="text-darkBlue py-2 px-4 w-3/5"
+                />
+              </div>
+              <div className="flex justify-between items-center mt-5">
+                <label htmlFor="amount" className="text-left">
+                  Ücret
+                </label>
+                <input
+                  value={values.amount}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="amount"
+                  type="number"
+                  id="amount"
+                  className="text-darkBlue py-2 px-4 w-3/5"
+                />
+              </div>
             </div>
-            <div className="flex justify-between items-center mt-5">
-              <label htmlFor="returnDate" className="">
-                Teslim Tarihi
-              </label>
-              <input
-                value={values.returnDate}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                name="returnDate"
-                type="date"
-                id="returnDate"
-                className="text-darkBlue py-2 px-4 w-3/4"
-              />
-            </div>
-          </div>
-          <div className="text-right mt-5">
-            <NavLink to={`/payment/${selectedCar.carId}`} className="btn">
+            <div className="text-right mt-5">
+              {/* <NavLink  to={`/payment/${selectedCar.carId}`} className="btn">
               Kirala
-            </NavLink>
-          </div>
+            </NavLink> */}
+              <button type="submit" className="btn">
+                Kirala
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

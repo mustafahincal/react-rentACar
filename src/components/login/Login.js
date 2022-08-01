@@ -5,9 +5,16 @@ import { login } from "../../services/authService";
 import { useAuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { setToLocalStorage } from "../../services/localStorageService";
+import jwtDecode from "jwt-decode";
+import { setCurrentCustomer } from "../../services/customerService";
+import { useUserContext } from "../../context/UserContext";
+import { getUserById, setUser } from "../../services/userService";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const { setIsLogged } = useAuthContext();
+  const { setSelectedUser } = useUserContext();
+  const navigate = useNavigate();
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
@@ -17,13 +24,24 @@ function Login() {
       },
       onSubmit: (values) => {
         login(values)
-          .then((response) => {
+          .then(async (response) => {
+            console.log(response);
             if (response.success) {
-              setIsLogged(true);
               toast.success(response.message);
               setToLocalStorage("token", response.data.token);
               values.email = "";
               values.password = "";
+
+              let decode = await jwtDecode(response.data.token);
+
+              let responseUser = await getUserById(
+                decode[
+                  "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+                ]
+              );
+              setSelectedUser(responseUser.data);
+              setIsLogged(true);
+              navigate("/");
             }
           })
           .catch((err) => toast.error(err.message));

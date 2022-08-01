@@ -7,11 +7,6 @@ import { ChangePasswordSchema } from "../../validations/changePasswordSchema";
 
 function ChangePassword() {
   const { selectedUser, setSelectedUser } = useUserContext();
-  const { id } = useParams();
-
-  useEffect(() => {
-    getUserById(8).then((result) => setSelectedUser(result.data));
-  }, []);
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({

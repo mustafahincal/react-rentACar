@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import { CarSchema } from "../../../validations/carSchema";
 import { toast } from "react-toastify";
@@ -9,12 +9,14 @@ import { useModelContext } from "../../../context/ModelContext";
 import { getBrands } from "../../../services/brandService";
 import { getColors } from "../../../services/colorService";
 import { getModels, getModelsByBrandId } from "../../../services/modelService";
+import { useFileContext } from "../../../context/FileContext";
 
 function AddCar() {
   const { brands, setBrands } = useBrandContext();
   const { colors, setColors } = useColorContext();
   const { models, setModels } = useModelContext();
   const { selectedBrand, setSelectedBrand } = useBrandContext();
+  const { file, setFile } = useFileContext();
 
   useEffect(() => {
     getBrands().then((result) => setBrands(result.data));
@@ -49,7 +51,15 @@ function AddCar() {
       validationSchema: CarSchema,
     });
 
-  const handleAddImage = () => {};
+  // const handleAddFile = () => {
+  //   if (values.brandId == 0) {
+  //     toast.error("Lütfen eklenecek araba bilgilerini girin");
+  //   } else {
+  //     const formData = new FormData();
+  //     formData.append("image",image);
+  //     formData.append("carId",)
+  //   }
+  // };
 
   return (
     <div className="flex justify-between items-start min-h-screen">
@@ -187,6 +197,7 @@ function AddCar() {
           <div className=" bg-darkBlue text-gray-100  p-10 text-lg flex justify-center items-center">
             <input
               type="file"
+              onChange={(e) => setFile(e.target.files[0])}
               className="block w-full text-sm text-slate-300
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-full file:border-0
@@ -197,9 +208,7 @@ function AddCar() {
             />
           </div>
           <div className="text-right mt-5">
-            <button onClick={() => handleAddImage()} className="btn text-lg">
-              Ekle
-            </button>
+            <button className="btn text-lg">Ekle</button>
           </div>
         </div>
       </div>

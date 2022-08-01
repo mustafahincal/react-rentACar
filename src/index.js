@@ -13,6 +13,7 @@ import { UserProvider } from "./context/UserContext";
 import { CreditCardProvider } from "./context/CreditCardContext";
 import { ModelProvider } from "./context/ModelContext";
 import { AuthProvider } from "./context/AuthContext";
+import { FileProvider } from "./context/FileContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,7 +27,9 @@ root.render(
                 <CreditCardProvider>
                   <ModelProvider>
                     <AuthProvider>
-                      <App />
+                      <FileProvider>
+                        <App />
+                      </FileProvider>
                     </AuthProvider>
                   </ModelProvider>
                 </CreditCardProvider>

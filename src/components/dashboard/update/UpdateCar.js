@@ -12,6 +12,10 @@ import { getModels, getModelsByBrandId } from "../../../services/modelService";
 import { useCarContext } from "../../../context/CarContext";
 import defaultImage from "../../../assets/default.png";
 import { UpdateCarSchema } from "../../../validations/updateCarSchema";
+import { getCar } from "../../../services/carService";
+import { useFileContext } from "../../../context/FileContext";
+import { addImage } from "../../../services/carImageService";
+import axios from "axios";
 
 function UpdateCar() {
   const { brands, setBrands } = useBrandContext();
@@ -19,12 +23,17 @@ function UpdateCar() {
   const { models, setModels } = useModelContext();
   const { selectedBrand, setSelectedBrand } = useBrandContext();
   const { selectedCar, setSelectedCar } = useCarContext();
-
+  const { file, setFile } = useFileContext();
   const apiImagesUrl = "https://localhost:44322/uploads/images/";
 
   useEffect(() => {
-    getBrands().then((result) => setBrands(result.data));
+    getBrands().then((result) => {
+      setBrands(result.data);
+    });
     getColors().then((result) => setColors(result.data));
+    // getModelsByBrandId(selectedCar.brandId).then((result) =>
+    //   setModels(result.data)
+    // );
   }, []);
 
   useEffect(() => {
@@ -34,29 +43,43 @@ function UpdateCar() {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        brandId: 0,
-        colorId: 0,
-        modelId: 0,
-        modelYear: "",
-        description: "",
-        dailyPrice: "",
+        id: selectedCar.carId,
+        brandId: selectedCar.brandId,
+        colorId: selectedCar.colorId,
+        modelId: selectedCar.modelId,
+        modelYear: selectedCar.modelYear,
+        description: selectedCar.description,
+        dailyPrice: selectedCar.dailyPrice,
       },
       onSubmit: (values) => {
         updateCar(values)
           .then((response) => {
             if (response.success) {
               toast.success(response.message);
+              getCar(selectedCar.carId).then((result) =>
+                setSelectedCar(result.data[0])
+              );
             }
           })
           .catch((err) =>
             err.Errors.map((error) => toast.error(error.ErrorMessage))
           );
-        console.log(values);
       },
-      validationSchema: UpdateCarSchema,
     });
 
-  const handleAddImage = () => {};
+  const handleAddFile = () => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("carId", selectedCar.carId);
+
+    addImage(formData)
+      .then((response) => {
+        if (response.success) {
+          toast.success(response.message);
+        }
+      })
+      .catch((err) => toast.error(err.message));
+  };
 
   return (
     <div className="flex justify-between items-center p-16">
@@ -233,6 +256,7 @@ function UpdateCar() {
             <div className=" bg-darkBlue text-gray-100  p-10 text-lg flex justify-center items-center">
               <input
                 type="file"
+                onChange={(e) => setFile(e.target.files[0])}
                 className="block w-full text-sm text-slate-300
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-full file:border-0
@@ -243,7 +267,7 @@ function UpdateCar() {
               />
             </div>
             <div className="text-right mt-5">
-              <button onClick={() => handleAddImage()} className="btn text-lg">
+              <button onClick={() => handleAddFile()} className="btn text-lg">
                 Ekle
               </button>
             </div>
