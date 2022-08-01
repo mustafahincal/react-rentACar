@@ -34,9 +34,21 @@
 
 ![](imagesForReadme/updateuser.png)
 
+## Arabalar - Admin (Cars - Admin)
+
+![](imagesForReadme/arabalaradmin.png)
+
 ## Araba Ekle (Add Car)
 
 ![](imagesForReadme/addCar.png)
+
+## Araba Detayları - Admin (Car Details - Admin)
+
+![](imagesForReadme/cardetailsAdmin.png)
+
+## Araba Güncelle (Update Car)
+
+![](imagesForReadme/updateCar.png)
 
 ## Marka Ekle (Add Brand)
 
@@ -46,13 +58,17 @@
 
 ![](imagesForReadme/addmodel.png)
 
-## Araba Detayları - Admin (Car Details - Admin)
+## Renk Ekle (Add Color)
 
-![](imagesForReadme/cardetailsAdmin.png)
+![](imagesForReadme/addColor.png)
 
-## Araba Güncelle (Update Car)
+## Kullanıcıları Düzenle (Update Users)
 
-![](imagesForReadme/updateCar.png)
+![](imagesForReadme/adminUsers.png)
+
+## Kiralamaları Düzenle (Update Rentals)
+
+![](imagesForReadme/addColor.png)
 
 # Getting Started with Create React App
 
