@@ -10,14 +10,6 @@
 
 ![](ImagesForReadme/arabalar.png)
 
-# Giriş Yap (Login)
-
-![](ImagesForReadme/login.png)
-
-# Kayıt Ol (Register)
-
-![](ImagesForReadme/register.png)
-
 # Araba Detayları (Car Details)
 
 ![](ImagesForReadme/cardetails.png)
@@ -26,21 +18,17 @@
 
 ![](ImagesForReadme/rent.png)
 
-# Ödeme (Payment)
+# Giriş Yap (Login)
 
-![](ImagesForReadme/payment.png)
+![](ImagesForReadme/login.png)
+
+# Kayıt Ol (Register)
+
+![](ImagesForReadme/register.png)
 
 # Kullanıcıyı Düzenle (Update User)
 
 ![](ImagesForReadme/updateuser.png)
-
-# Araba Ekle (Add Car)
-
-![](ImagesForReadme/addCar.png)
-
-# Marka Ekle (Add Brand)
-
-![](ImagesForReadme/addBrand.png)
 
 # Model Ekle (Add Model)
 
