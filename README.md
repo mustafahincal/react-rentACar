@@ -6,6 +6,26 @@
 
 ### E-mail Address: mustafahncal@gmail.com
 
+### **Frontend**
+
+- **React**
+- **Tailwind CSS**
+- **Context**
+- **Formik**
+- **Axios**
+- **React Toastify**
+- **Google Fonts**
+  <br>
+
+## **Installing / Getting started (Yükleme / Projeyi çalıştırma)**
+
+```shell
+git clone https://github.com/mustafahincal/react-RentACar.git
+cd project-client/
+npm install
+npm run start
+```
+
 ## Arabalar (Cars)
 
 ![](imagesForReadme/arabalar.png)
