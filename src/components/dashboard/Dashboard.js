@@ -4,7 +4,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import AddBrand from "./add/AddBrand";
 import AddColor from "./add/AddColor";
 import AddModel from "./add/AddModel";
-
+import AddOfficialUser from "./add/AddOfficialUser";
 import CreditCards from "./CreditCards";
 import Rentals from "./Rentals";
 import Users from "./Users";
@@ -56,6 +56,12 @@ function DashBoard() {
           >
             Kiralanan Araçlar
           </NavLink>
+          <NavLink
+            to={`officialregister`}
+            className="px-2  rounded py-2 border-b-2 hover:bg-gray-200"
+          >
+            Yetkili Kullanıcı Kayıt
+          </NavLink>
         </div>
       </div>
       <div className="col-span-8 py-10 pl-5">
@@ -67,6 +73,7 @@ function DashBoard() {
           <Route path="/addBrand" element={<AddBrand />} />
           <Route path="/addModel" element={<AddModel />} />
           <Route path="/addColor" element={<AddColor />} />
+          <Route path="/officialregister" element={<AddOfficialUser />} />
         </Routes>
       </div>
     </div>

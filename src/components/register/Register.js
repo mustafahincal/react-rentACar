@@ -55,6 +55,7 @@ function Register() {
       lastName: values.surname,
       email: values.email,
       password: values.password,
+      status: false,
     };
     return registerDto;
   };

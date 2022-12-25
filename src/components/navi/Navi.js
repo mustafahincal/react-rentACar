@@ -6,12 +6,15 @@ import { removeFromLocalStorage } from "../../services/localStorageService";
 import logo from "../../assets/logo.png";
 
 function Navi() {
-  const { isAdmin, isLogged, setIsLogged } = useAuthContext();
+  const { isAdmin, isLogged, setIsLogged, setIsAdmin } = useAuthContext();
   const { selectedUser } = useUserContext();
 
   const handleLogOut = () => {
     setIsLogged(false);
+    setIsAdmin(false);
     removeFromLocalStorage("token");
+    removeFromLocalStorage("isAdmin");
+    removeFromLocalStorage("isLogged");
   };
   return (
     <div>
