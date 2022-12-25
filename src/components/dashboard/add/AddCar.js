@@ -37,16 +37,24 @@ function AddCar() {
         dailyPrice: "",
       },
       onSubmit: (values) => {
-        addCar(values)
-          .then((response) => {
-            if (response.success) {
-              toast.success(response.message);
-            }
-            navigate("/main");
-          })
-          .catch((err) =>
-            err.Errors.map((error) => toast.error(error.ErrorMessage))
-          );
+        if (file) {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("body", JSON.stringify(values));
+          console.log(formData);
+          addCar(formData)
+            .then((response) => {
+              if (response.success) {
+                toast.success(response.message);
+              }
+              navigate("/main");
+            })
+            .catch((err) =>
+              err.Errors.map((error) => toast.error(error.ErrorMessage))
+            );
+        } else {
+          toast.error("Lütfen araba görseli ekleyiniz");
+        }
       },
       validationSchema: CarSchema,
     });
@@ -205,9 +213,6 @@ function AddCar() {
                     hover:file:bg-violet-300 hover:file:text-black
                     file:cursor-pointer cursor-pointer"
             />
-          </div>
-          <div className="text-right mt-5">
-            <button className="btn text-lg">Ekle</button>
           </div>
         </div>
       </div>

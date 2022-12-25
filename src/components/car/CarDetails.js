@@ -1,18 +1,27 @@
 import { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import defaultImage from "../../assets/default.png";
 import { useAuthContext } from "../../context/AuthContext";
 import { useCarContext } from "../../context/CarContext";
-import { getCar } from "../../services/carService";
+import { deleteCar, getCar } from "../../services/carService";
 
 function CarDetails() {
   const apiImagesUrl = "https://localhost:7067/uploads/images/";
   const { selectedCar, setSelectedCar } = useCarContext();
   const { isAdmin } = useAuthContext();
   const { id } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     getCar(id).then((result) => setSelectedCar(result.data[0]));
   }, []);
+
+  const handleDeleteCarButton = (carId) => {
+    deleteCar({ carId }).then((result) => {
+      toast.success(result.message);
+      navigate("/");
+    });
+  };
 
   return (
     <div className="p-16 flex justify-between">
@@ -65,6 +74,14 @@ function CarDetails() {
             >
               Aracı Güncelle
             </NavLink>
+          )}
+          {isAdmin && (
+            <button
+              onClick={() => handleDeleteCarButton(selectedCar.carId)}
+              className="btn bg-red-500 font-bold py-3"
+            >
+              Aracı Sil
+            </button>
           )}
         </div>
       </div>
