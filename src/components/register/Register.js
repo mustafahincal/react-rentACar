@@ -39,6 +39,7 @@ function Register() {
                 ]
               );
               setSelectedUser(responseUser.data);
+              setToLocalStorage("isLogged", true);
               setIsLogged(true);
               navigate("/");
             }

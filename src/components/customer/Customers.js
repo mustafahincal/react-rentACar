@@ -4,7 +4,7 @@ import { useCustomerContext } from "../../context/CustomerContext";
 function Customer() {
   const { customers, setCustomers } = useCustomerContext();
   useEffect(() => {
-    fetch("https://localhost:44322/api/customers/getall")
+    fetch("https://localhost:7067/api/customers/getall")
       .then((response) => {
         if (response.ok) {
           return response.json();

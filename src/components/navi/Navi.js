@@ -13,11 +13,6 @@ function Navi() {
     setIsLogged(false);
     removeFromLocalStorage("token");
   };
-
-  const test = () => {
-    console.log(selectedUser);
-  };
-
   return (
     <div>
       <nav className="flex justify-between items-center py-2 px-12 bg-darkBlue text-white font-bold">

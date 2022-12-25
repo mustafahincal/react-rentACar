@@ -22,7 +22,7 @@ function Car() {
   const { filterByColor, filterByBrand, setFilterByColor, setFilterByBrand } =
     useFilterContext();
 
-  const apiImagesUrl = "https://localhost:44322/uploads/images/";
+  const apiImagesUrl = "https://localhost:7067/uploads/images/";
 
   useEffect(() => {
     if (brandId) {

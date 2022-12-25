@@ -10,6 +10,7 @@ import { getBrands } from "../../../services/brandService";
 import { getColors } from "../../../services/colorService";
 import { getModels, getModelsByBrandId } from "../../../services/modelService";
 import { useFileContext } from "../../../context/FileContext";
+import { useNavigate } from "react-router-dom";
 
 function AddCar() {
   const { brands, setBrands } = useBrandContext();
@@ -18,14 +19,12 @@ function AddCar() {
   const { selectedBrand, setSelectedBrand } = useBrandContext();
   const { file, setFile } = useFileContext();
 
+  const navigate = useNavigate();
   useEffect(() => {
     getBrands().then((result) => setBrands(result.data));
     getColors().then((result) => setColors(result.data));
+    getModels().then((result) => setModels(result.data));
   }, []);
-
-  useEffect(() => {
-    getModelsByBrandId(selectedBrand).then((result) => setModels(result.data));
-  }, [selectedBrand]);
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
@@ -43,6 +42,7 @@ function AddCar() {
             if (response.success) {
               toast.success(response.message);
             }
+            navigate("/main");
           })
           .catch((err) =>
             err.Errors.map((error) => toast.error(error.ErrorMessage))
@@ -76,7 +76,6 @@ function AddCar() {
                 value={values.brandId}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                onClick={() => setSelectedBrand(values.brandId)}
               >
                 <option value={0}>Marka Seçiniz</option>
                 {brands.map((brand) => (

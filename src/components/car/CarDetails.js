@@ -6,7 +6,7 @@ import { useCarContext } from "../../context/CarContext";
 import { getCar } from "../../services/carService";
 
 function CarDetails() {
-  const apiImagesUrl = "https://localhost:44322/uploads/images/";
+  const apiImagesUrl = "https://localhost:7067/uploads/images/";
   const { selectedCar, setSelectedCar } = useCarContext();
   const { isAdmin } = useAuthContext();
   const { id } = useParams();
@@ -23,7 +23,7 @@ function CarDetails() {
               ? apiImagesUrl + selectedCar.imagePath
               : defaultImage
           }
-          className="object-cover object-center rounded-t-md"
+          className="object-cover object-center rounded-t-md w-full"
           alt=""
         />
         <div className="">

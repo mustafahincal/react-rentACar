@@ -27,6 +27,7 @@ function AddModel() {
           .then((response) => {
             if (response.success) {
               toast.success(response.message);
+              getModels().then((result) => setModels(result.data));
             }
           })
           .catch((err) =>

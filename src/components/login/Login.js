@@ -12,7 +12,7 @@ import { getUserById, setUser } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const { setIsLogged } = useAuthContext();
+  const { setIsLogged, setIsAdmin } = useAuthContext();
   const { setSelectedUser } = useUserContext();
   const navigate = useNavigate();
 
@@ -25,7 +25,6 @@ function Login() {
       onSubmit: (values) => {
         login(values)
           .then(async (response) => {
-            console.log(response);
             if (response.success) {
               toast.success(response.message);
               setToLocalStorage("token", response.data.token);
@@ -39,6 +38,11 @@ function Login() {
                   "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
                 ]
               );
+              if (decode.email === "admin@mail.com") {
+                setIsAdmin(true);
+                setToLocalStorage("isAdmin", true);
+              }
+              setToLocalStorage("isLogged", true);
               setSelectedUser(responseUser.data);
               setIsLogged(true);
               navigate("/");

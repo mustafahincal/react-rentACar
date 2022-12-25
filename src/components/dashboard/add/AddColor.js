@@ -21,6 +21,7 @@ function AddColor() {
           .then((response) => {
             if (response.success) {
               toast.success(response.message);
+              getColors().then((result) => setColors(result.data));
             }
           })
           .catch((err) =>

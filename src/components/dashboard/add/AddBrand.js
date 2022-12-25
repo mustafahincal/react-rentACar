@@ -21,6 +21,7 @@ function AddBrand() {
           .then((response) => {
             if (response.success) {
               toast.success(response.message);
+              getBrands().then((result) => setBrands(result.data));
             }
           })
           .catch((err) =>
