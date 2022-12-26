@@ -17,6 +17,7 @@ import UpdateCreditCard from "./components/dashboard/update/UpdateCreditCard";
 import UpdateRental from "./components/dashboard/update/UpdateRental";
 import Profile from "./components/profile/Profile";
 import Page404 from "./components/page404/Page404";
+import LoginPassReset from "./components/login/LoginPassReset";
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/editacar/:id" element={<EditACar />} />
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/loginpassreset" element={<LoginPassReset />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/addCar" element={<AddCar />} />

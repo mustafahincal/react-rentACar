@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
-import { LoginSchema } from "../../validations/loginSchema";
-import { createResetPassCode, login } from "../../services/authService";
+import { LoginPassResetSchema } from "../../validations/LoginPassResetSchema";
+import { forgotPasswordLogin, login } from "../../services/authService";
 import { useAuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { setToLocalStorage } from "../../services/localStorageService";
@@ -11,20 +11,20 @@ import { useUserContext } from "../../context/UserContext";
 import { getUserById, setUser } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function LoginPassReset() {
   const { setIsLogged, setIsAdmin, setIsEditor } = useAuthContext();
   const { setSelectedUser } = useUserContext();
-  const [resetEmail, setResetEmail] = useState("");
   const navigate = useNavigate();
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
         email: "",
-        password: "",
+        newPass: "",
+        resetCode: "",
       },
       onSubmit: (values) => {
-        login(values)
+        /* login(values)
           .then(async (response) => {
             if (response.success) {
               toast.success(response.message);
@@ -58,19 +58,16 @@ function Login() {
               navigate("/");
             }
           })
-          .catch((err) => toast.error(err.message));
+          .catch((err) => toast.error(err.message)); */
+        forgotPasswordLogin(values).then((result) => {
+          console.log(result);
+          if (result.success) {
+            navigate("/");
+          }
+        });
       },
-      validationSchema: LoginSchema,
+      validationSchema: LoginPassResetSchema,
     });
-
-  const handleForgotPassButton = () => {
-    createResetPassCode({ email: resetEmail }).then((result) => {
-      if (result.success) {
-        toast.success(result.message);
-        navigate("/loginpassreset");
-      }
-    });
-  };
 
   return (
     <div className="w-2/6 m-auto py-10 shadow-item mt-20 bg-white">
@@ -78,6 +75,9 @@ function Login() {
         <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
           Giriş Yap
         </h1>
+        <div className="text-xl text-center my-2 bg-red-500 text-white py-3 px-2">
+          Lütfen mailinize gönderilen şifre sıfırlama kodunu giriniz
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
@@ -97,50 +97,41 @@ function Login() {
             </div>
             <div className="mt-5">
               <input
-                value={values.password}
+                value={values.newPass}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                name="password"
+                name="newPass"
                 type="password"
                 className="text-darkBlue py-2 px-4 w-full"
-                placeholder="Şifre"
+                placeholder="Yeni Şifre"
               />
-              {errors.password && touched.password && (
+              {errors.newPass && touched.newPass && (
                 <div className="text-red-400 my-2 text-sm">
-                  {errors.password}
+                  {errors.newPass}
                 </div>
               )}
             </div>
+            <div className="mt-5">
+              <input
+                value={values.resetCode}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="resetCode"
+                type="number"
+                className="text-darkBlue py-2 px-4 w-full"
+                placeholder="Sıfırlama Kodu"
+              />
+            </div>
           </div>
-          <div className="text-right my-5">
+          <div className="text-right mt-5">
             <button type="submit" className="btn text-lg">
               Giriş Yap
             </button>
           </div>
         </form>
-        <div className="text-right mt-1">
-          <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
-            <div>
-              <input
-                value={resetEmail}
-                onChange={(e) => setResetEmail(e.target.value)}
-                name="resetEmail"
-                type="text"
-                className="text-darkBlue py-2 px-4 w-full"
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          <button
-            onClick={() => handleForgotPassButton()}
-            className="btn text-lg mt-5"
-          >
-            Şifremi Unuttum
-          </button>
-        </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default LoginPassReset;

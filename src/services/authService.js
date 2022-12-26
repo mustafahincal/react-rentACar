@@ -11,3 +11,8 @@ export const registerOfficial = (registerDto) =>
 
 export const changePassword = (data) =>
   post(apiUrl + "/auth/changepassword", data);
+
+export const createResetPassCode = (data) =>
+  post(apiUrl + "/auth/createresetpasscode", data);
+
+export const forgotPasswordLogin = (data) => console.log(data);

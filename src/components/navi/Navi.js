@@ -18,6 +18,7 @@ function Navi() {
     removeFromLocalStorage("isAdmin");
     removeFromLocalStorage("isLogged");
     removeFromLocalStorage("userId");
+    removeFromLocalStorage("isEditor");
     navigate("/");
   };
   return (
