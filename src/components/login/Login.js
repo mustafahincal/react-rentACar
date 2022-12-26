@@ -58,7 +58,7 @@ function Login() {
               navigate("/");
             }
           })
-          .catch((err) => toast.error(err.message));
+          .catch((err) => toast.error(err.response.data.message));
       },
       validationSchema: LoginSchema,
     });

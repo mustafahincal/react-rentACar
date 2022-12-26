@@ -24,12 +24,14 @@ function LoginPassReset() {
         resetCode: "",
       },
       onSubmit: (values) => {
-        forgotPasswordLogin(values).then((result) => {
-          console.log(result);
-          if (result.success) {
-            navigate("/");
-          }
-        });
+        forgotPasswordLogin(values)
+          .then((result) => {
+            if (result.success) {
+              toast.success(result.message);
+              navigate("/");
+            }
+          })
+          .catch((err) => toast.error(err.response.data.message));
       },
       validationSchema: LoginPassResetSchema,
     });
