@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useUserContext } from "../../context/UserContext";
-import { getUsers } from "../../services/userService";
+import { deleteUserById, getUsers } from "../../services/userService";
 
 function Users() {
-  const { users, setUsers } = useUserContext();
+  const { users, setUsers, selectedUser } = useUserContext();
   useEffect(() => {
     getUsers().then((result) => setUsers(result.data));
   }, []);
+
+  const handleDeleteUserButton = (userId) => {
+    deleteUserById({ userId }).then((result) => {
+      toast.success(result.message);
+      getUsers().then((result) => setUsers(result.data));
+    });
+  };
   return (
     <div>
       {users.map((user, index) => (
@@ -18,11 +26,18 @@ function Users() {
           <div>{user.firstName + " " + user.lastName}</div>
           <div>{user.email}</div>
           <div>{user.status ? "true" : "false"}</div>
-          <div>
-            <NavLink to={`/updateUser/${user.id}`} className="btn text-sm">
-              Düzenle
-            </NavLink>
-          </div>
+          {user.id !== selectedUser.id ? (
+            <div>
+              <button
+                onClick={() => handleDeleteUserButton(user.id)}
+                className="btn text-sm bg-red-500"
+              >
+                Sil
+              </button>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       ))}
     </div>

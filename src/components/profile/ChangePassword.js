@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useUserContext } from "../../context/UserContext";
-import { useParams } from "react-router-dom";
-import { getUserById } from "../../services/userService";
+import { changePassword } from "../../services/authService";
 import { ChangePasswordSchema } from "../../validations/changePasswordSchema";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function ChangePassword() {
   const { selectedUser, setSelectedUser } = useUserContext();
-
+  const navigate = useNavigate();
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
@@ -16,7 +17,16 @@ function ChangePassword() {
         newPasswordConfirm: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        changePassword({
+          oldPass: values.oldPassword,
+          newPass: values.newPassword,
+          userEmail: selectedUser.email,
+        })
+          .then((result) => {
+            toast.success(result.message);
+            navigate("/profile");
+          })
+          .catch((err) => toast.error(err.response.data.message));
       },
       validationSchema: ChangePasswordSchema,
     });
@@ -25,7 +35,7 @@ function ChangePassword() {
     <div className="w-1/2  py-10 shadow-item  bg-white mx-auto mt-14">
       <div className="w-3/4 m-auto">
         <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
-          Şifre Değiştir - {selectedUser.firstName}
+          Şifre Değiştir
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">

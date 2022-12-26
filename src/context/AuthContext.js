@@ -5,7 +5,7 @@ import jwtDecode from "jwt-decode";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {

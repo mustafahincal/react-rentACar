@@ -3,7 +3,8 @@ import { useFormik } from "formik";
 import { UserSchema } from "../../../validations/userSchema";
 import { useUserContext } from "../../../context/UserContext";
 import { useParams } from "react-router-dom";
-import { getUserById } from "../../../services/userService";
+import { getUserById, updateUser } from "../../../services/userService";
+import { toast } from "react-toastify";
 
 function UpdateUser() {
   const { selectedUser, setSelectedUser } = useUserContext();
@@ -16,7 +17,17 @@ function UpdateUser() {
         email: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        updateUser({
+          userId: selectedUser.id,
+          ...values,
+        })
+          .then((result) => {
+            toast.success(result.message);
+            getUserById(selectedUser.id).then((result) =>
+              setSelectedUser(result.data)
+            );
+          })
+          .catch((err) => toast.error(err.response.data.message));
       },
       validationSchema: UserSchema,
     });

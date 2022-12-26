@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import { useUserContext } from "../../context/UserContext";
 import { removeFromLocalStorage } from "../../services/localStorageService";
@@ -8,6 +8,7 @@ import logo from "../../assets/logo.png";
 function Navi() {
   const { isAdmin, isLogged, setIsLogged, setIsAdmin } = useAuthContext();
   const { selectedUser } = useUserContext();
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     setIsLogged(false);
@@ -15,6 +16,7 @@ function Navi() {
     removeFromLocalStorage("token");
     removeFromLocalStorage("isAdmin");
     removeFromLocalStorage("isLogged");
+    navigate("/");
   };
   return (
     <div>
