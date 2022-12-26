@@ -6,7 +6,8 @@ import { removeFromLocalStorage } from "../../services/localStorageService";
 import logo from "../../assets/logo.png";
 
 function Navi() {
-  const { isAdmin, isLogged, setIsLogged, setIsAdmin } = useAuthContext();
+  const { isAdmin, isLogged, setIsLogged, setIsAdmin, isEditor } =
+    useAuthContext();
   const { selectedUser } = useUserContext();
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ function Navi() {
     removeFromLocalStorage("token");
     removeFromLocalStorage("isAdmin");
     removeFromLocalStorage("isLogged");
+    removeFromLocalStorage("userId");
     navigate("/");
   };
   return (
@@ -31,7 +33,7 @@ function Navi() {
           </NavLink>
         </div>
         <div className="flex  items-center">
-          {isAdmin && (
+          {(isAdmin || isEditor) && (
             <NavLink
               className={({ isActive }) =>
                 "btn bg-littleDarkBlue text-white mr-5"

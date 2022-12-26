@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useCarContext } from "../../context/CarContext";
 import defaultImage from "../../assets/default.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { RentalSchema } from "../../validations/rentalSchema";
 import { useFormik } from "formik";
 import { useUserContext } from "../../context/UserContext";
@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 function RentACar() {
   const { selectedCar } = useCarContext();
   const { selectedUser } = useUserContext();
+  const navigate = useNavigate();
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
@@ -22,16 +23,16 @@ function RentACar() {
         amount: "",
       },
       onSubmit: (values) => {
-        /* addRental(values)
+        addRental(values)
           .then((response) => {
             if (response.success) {
               toast.success("Kiralama işlemi başarılı");
+              navigate("/");
             }
           })
           .catch((err) =>
             err.Errors.map((error) => toast.error(error.ErrorMessage))
-          ); */
-        console.log(values);
+          );
       },
       validationSchema: RentalSchema,
     });

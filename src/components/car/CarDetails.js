@@ -9,7 +9,7 @@ import { deleteCar, getCar } from "../../services/carService";
 function CarDetails() {
   const apiImagesUrl = "https://localhost:7067/uploads/images/";
   const { selectedCar, setSelectedCar } = useCarContext();
-  const { isAdmin } = useAuthContext();
+  const { isAdmin, isEditor } = useAuthContext();
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -60,10 +60,15 @@ function CarDetails() {
       </div>
       <div className="w-1/2 pt-20">
         <div className="bg-white rounded-md w-1/2 m-auto p-10 flex flex-col gap-3 shadow-item text-center">
-          <NavLink to={`/rentacar/${selectedCar.carId}`} className="btn  py-3">
-            Aracı Kirala
-          </NavLink>
-          {isAdmin && (
+          {!(isAdmin || isEditor) && (
+            <NavLink
+              to={`/rentacar/${selectedCar.carId}`}
+              className="btn  py-3"
+            >
+              Aracı Kirala
+            </NavLink>
+          )}
+          {(isAdmin || isEditor) && (
             <NavLink
               to={`/updateCar/${selectedCar.carId}`}
               className="btn bg-littleDarkBlue font-bold py-3"
@@ -71,7 +76,7 @@ function CarDetails() {
               Aracı Güncelle
             </NavLink>
           )}
-          {isAdmin && (
+          {(isAdmin || isEditor) && (
             <button
               onClick={() => handleDeleteCarButton(selectedCar.carId)}
               className="btn bg-red-500 font-bold py-3"

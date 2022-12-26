@@ -4,13 +4,14 @@ import { useRentalContext } from "../../context/RentalContext";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
+import { getFromLocalStorage } from "../../services/localStorageService";
 
 function ProfileRentals() {
   const { rentals, setRentals } = useRentalContext();
   const { selectedUser } = useUserContext();
   useEffect(() => {
-    getRentalDetailsByUserId(selectedUser.id).then((result) =>
-      setRentals(result.data)
+    getRentalDetailsByUserId(getFromLocalStorage("userId")).then((result) =>
+      console.log(result.data)
     );
   }, []);
   return (
@@ -23,8 +24,7 @@ function ProfileRentals() {
           <div>{rental.brandName + " " + rental.modelName}</div>
           <div>{rental.colorName}</div>
           <div>{rental.firstName + " " + rental.lastName}</div>
-          <div>{moment(rental.rentDate).format("DD-MM-YYYY")}</div>
-          <div>{moment(rental.returnDate).format("DD-MM-YYYY")}</div>
+          <div>{rental.day} Gün</div>
           <div>{rental.amount}₺</div>
         </div>
       ))}

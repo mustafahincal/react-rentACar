@@ -18,7 +18,7 @@ function Car() {
   const { brandId, colorId } = useParams();
   const { brands } = useBrandContext();
   const { colors } = useColorContext();
-  const { isAdmin } = useAuthContext();
+  const { isAdmin, isEditor } = useAuthContext();
   const { filterByColor, filterByBrand, setFilterByColor, setFilterByBrand } =
     useFilterContext();
 
@@ -79,7 +79,7 @@ function Car() {
           Filtrele
         </button>
 
-        {isAdmin && (
+        {(isEditor || isAdmin) && (
           <NavLink
             to={"/addCar"}
             className="ml-7 btn bg-littleDarkBlue text-white font-bold"
@@ -90,24 +90,30 @@ function Car() {
       </div>
 
       <div className="grid grid-cols-12 gap-7">
-        {cars.map((car, index) => (
-          <NavLink
-            key={index}
-            className="bg-white h-80 rounded-md col-span-3 shadow-item"
-            to={`/cardetails/${car.carId}`}
-          >
-            <img
-              src={car.imagePath ? apiImagesUrl + car.imagePath : defaultImage}
-              className="rounded-t-md h-2/3 object-cover object-center w-full"
-              alt=""
-            />
-            <div className="text-center flex flex-col justify-between h-1/3 py-2">
-              <p>{car.brandName + " " + car.modelName}</p>
-              <p>{car.colorName}</p>
-              <p className="mt-1">{car.dailyPrice}₺</p>
-            </div>
-          </NavLink>
-        ))}
+        {cars.map((car, index) => {
+          return (
+            car.hasRented == false && (
+              <NavLink
+                key={index}
+                className="bg-white h-80 rounded-md col-span-3 shadow-item"
+                to={`/cardetails/${car.carId}`}
+              >
+                <img
+                  src={
+                    car.imagePath ? apiImagesUrl + car.imagePath : defaultImage
+                  }
+                  className="rounded-t-md h-2/3 object-cover object-center w-full"
+                  alt=""
+                />
+                <div className="text-center flex flex-col justify-between h-1/3 py-2">
+                  <p>{car.brandName + " " + car.modelName}</p>
+                  <p>{car.colorName}</p>
+                  <p className="mt-1">{car.dailyPrice}₺</p>
+                </div>
+              </NavLink>
+            )
+          );
+        })}
       </div>
     </div>
   );

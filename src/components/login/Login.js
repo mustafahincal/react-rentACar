@@ -12,7 +12,7 @@ import { getUserById, setUser } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const { setIsLogged, setIsAdmin } = useAuthContext();
+  const { setIsLogged, setIsAdmin, setIsEditor } = useAuthContext();
   const { setSelectedUser } = useUserContext();
   const navigate = useNavigate();
 
@@ -42,8 +42,17 @@ function Login() {
                 setIsAdmin(true);
                 setToLocalStorage("isAdmin", true);
               }
+              if (
+                decode[
+                  "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                ] === "Editor"
+              ) {
+                setIsEditor(true);
+                setToLocalStorage("isEditor", true);
+              }
               setToLocalStorage("isLogged", true);
               setSelectedUser(responseUser.data);
+              setToLocalStorage("userId", responseUser.data.id);
               setIsLogged(true);
               navigate("/");
             }

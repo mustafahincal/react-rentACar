@@ -22,6 +22,7 @@ function Register() {
           .then(async (response) => {
             if (response.success) {
               toast.success("Kayıt başarılı");
+              navigate("/dashboard");
             }
           })
           .catch((err) => toast.error(err.message));

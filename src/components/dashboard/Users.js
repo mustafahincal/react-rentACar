@@ -25,8 +25,10 @@ function Users() {
         >
           <div>{user.firstName + " " + user.lastName}</div>
           <div>{user.email}</div>
-          <div>{user.status ? "true" : "false"}</div>
-          {user.id !== selectedUser.id ? (
+          <div>
+            {user.id === 1 ? "Admin" : user.status ? "Editör" : "Kullanıcı"}
+          </div>
+          {user.id !== 1 && user.id !== selectedUser.id ? (
             <div>
               <button
                 onClick={() => handleDeleteUserButton(user.id)}
