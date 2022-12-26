@@ -16,6 +16,7 @@ import { getCar } from "../../../services/carService";
 import { useFileContext } from "../../../context/FileContext";
 import { addImage } from "../../../services/carImageService";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function UpdateCar() {
   const { brands, setBrands } = useBrandContext();
@@ -24,22 +25,15 @@ function UpdateCar() {
   const { selectedBrand, setSelectedBrand } = useBrandContext();
   const { selectedCar, setSelectedCar } = useCarContext();
   const { file, setFile } = useFileContext();
-  const apiImagesUrl = "https://localhost:44322/uploads/images/";
+  const { id } = useParams();
+  const apiImagesUrl = "https://localhost:7067/uploads/images/";
 
   useEffect(() => {
-    getBrands().then((result) => {
-      setBrands(result.data);
-    });
+    getCar(id).then((result) => setSelectedCar(result.data[0]));
+    getBrands().then((result) => setBrands(result.data));
     getColors().then((result) => setColors(result.data));
-    // getModelsByBrandId(selectedCar.brandId).then((result) =>
-    //   setModels(result.data)
-    // );
+    getModels().then((result) => setModels(result.data));
   }, []);
-
-  useEffect(() => {
-    getModelsByBrandId(selectedBrand).then((result) => setModels(result.data));
-  }, [selectedBrand]);
-
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
@@ -67,30 +61,12 @@ function UpdateCar() {
       },
     });
 
-  const handleAddFile = () => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("carId", selectedCar.carId);
-
-    addImage(formData)
-      .then((response) => {
-        if (response.success) {
-          toast.success(response.message);
-        }
-      })
-      .catch((err) => toast.error(err.message));
-  };
-
   return (
     <div className="flex justify-between items-center px-16 py-8">
       <div className="w-2/5  mx-auto  bg-white rounded-md shadow-item ">
         <img
-          src={
-            selectedCar.imagePath
-              ? apiImagesUrl + selectedCar.imagePath
-              : defaultImage
-          }
-          className="object-cover object-center rounded-t-md"
+          src={selectedCar.imagePath && apiImagesUrl + selectedCar.imagePath}
+          className="object-cover object-center rounded-t-md w-full"
           alt=""
         />
         <div className="">
@@ -246,31 +222,6 @@ function UpdateCar() {
                 </button>
               </div>
             </form>
-          </div>
-        </div>
-        <div className="w-4/5 mx-auto py-3 px-14 shadow-item mt-14 bg-white">
-          <div className="mx-auto text-center py-8">
-            <h1 className="font-extrabold text-3xl text-black mb-5 text-center">
-              Resim Ekle
-            </h1>
-            <div className=" bg-darkBlue text-gray-100  p-10 text-lg flex justify-center items-center">
-              <input
-                type="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                className="block w-full text-sm text-slate-300
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-violet-100 file:text-darkBlue
-                    hover:file:bg-violet-300 hover:file:text-black
-                    file:cursor-pointer cursor-pointer"
-              />
-            </div>
-            <div className="text-right mt-5">
-              <button onClick={() => handleAddFile()} className="btn text-lg">
-                Ekle
-              </button>
-            </div>
           </div>
         </div>
       </div>

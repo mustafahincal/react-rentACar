@@ -18,12 +18,11 @@ function RentACar() {
       initialValues: {
         carId: selectedCar.carId,
         userId: selectedUser.id,
-        rentDate: "",
-        returnDate: "",
+        day: "",
         amount: "",
       },
       onSubmit: (values) => {
-        addRental(values)
+        /* addRental(values)
           .then((response) => {
             if (response.success) {
               toast.success("Kiralama işlemi başarılı");
@@ -31,13 +30,13 @@ function RentACar() {
           })
           .catch((err) =>
             err.Errors.map((error) => toast.error(error.ErrorMessage))
-          );
+          ); */
         console.log(values);
       },
       validationSchema: RentalSchema,
     });
 
-  const apiImagesUrl = "https://localhost:44322/uploads/images/";
+  const apiImagesUrl = "https://localhost:7067/uploads/images/";
   return (
     <div className="py-20">
       <div className="bg-white shadow-item w-10/12 m-auto px-10 py-10 flex justify-between gap-5">
@@ -53,7 +52,7 @@ function RentACar() {
                     ? apiImagesUrl + selectedCar.imagePath
                     : defaultImage
                 }
-                className="object-cover object-center rounded-t-md"
+                className="object-cover object-center rounded-t-md w-full"
                 alt=""
               />
             </div>
@@ -76,31 +75,17 @@ function RentACar() {
           </h1>
           <form onSubmit={handleSubmit}>
             <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-7">
-              <div className="flex justify-between items-center">
-                <label htmlFor="rentDate" className="text-left">
-                  Kiralama Tarihi
-                </label>
-                <input
-                  value={values.rentDate}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  name="rentDate"
-                  type="date"
-                  id="rentDate"
-                  className="text-darkBlue py-2 px-4 w-3/5"
-                />
-              </div>
               <div className="flex justify-between items-center mt-5">
-                <label htmlFor="returnDate" className="text-left">
-                  Teslim Tarihi
+                <label htmlFor="amount" className="text-left">
+                  Kiralanan Gün Sayısı
                 </label>
                 <input
-                  value={values.returnDate}
+                  value={values.day}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  name="returnDate"
-                  type="date"
-                  id="returnDate"
+                  name="day"
+                  type="number"
+                  id="day"
                   className="text-darkBlue py-2 px-4 w-3/5"
                 />
               </div>
@@ -120,9 +105,9 @@ function RentACar() {
               </div>
             </div>
             <div className="text-right mt-5">
-              <NavLink to={`/payment/${selectedCar.carId}`} className="btn">
+              <button type="submit" className="btn">
                 Kirala
-              </NavLink>
+              </button>
             </div>
           </form>
         </div>

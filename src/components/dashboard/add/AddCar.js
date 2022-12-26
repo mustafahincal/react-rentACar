@@ -41,7 +41,7 @@ function AddCar() {
           const formData = new FormData();
           formData.append("file", file);
           formData.append("body", JSON.stringify(values));
-          console.log(formData);
+
           addCar(formData)
             .then((response) => {
               if (response.success) {

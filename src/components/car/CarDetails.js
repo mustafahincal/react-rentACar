@@ -27,11 +27,7 @@ function CarDetails() {
     <div className="p-16 flex justify-between">
       <div className="w-2/5 mb-16  bg-white rounded-md shadow-item mx-auto">
         <img
-          src={
-            selectedCar.imagePath
-              ? apiImagesUrl + selectedCar.imagePath
-              : defaultImage
-          }
+          src={selectedCar.imagePath && apiImagesUrl + selectedCar.imagePath}
           className="object-cover object-center rounded-t-md w-full"
           alt=""
         />
