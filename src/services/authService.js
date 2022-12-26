@@ -15,4 +15,5 @@ export const changePassword = (data) =>
 export const createResetPassCode = (data) =>
   post(apiUrl + "/auth/createresetpasscode", data);
 
-export const forgotPasswordLogin = (data) => console.log(data);
+export const forgotPasswordLogin = (data) =>
+  post(apiUrl + "/auth/forgotpasswordlogin", data);

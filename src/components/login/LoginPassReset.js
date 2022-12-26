@@ -24,41 +24,6 @@ function LoginPassReset() {
         resetCode: "",
       },
       onSubmit: (values) => {
-        /* login(values)
-          .then(async (response) => {
-            if (response.success) {
-              toast.success(response.message);
-              setToLocalStorage("token", response.data.token);
-              values.email = "";
-              values.password = "";
-
-              let decode = await jwtDecode(response.data.token);
-
-              let responseUser = await getUserById(
-                decode[
-                  "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
-                ]
-              );
-              if (decode.email === "admin@mail.com") {
-                setIsAdmin(true);
-                setToLocalStorage("isAdmin", true);
-              }
-              if (
-                decode[
-                  "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-                ] === "Editor"
-              ) {
-                setIsEditor(true);
-                setToLocalStorage("isEditor", true);
-              }
-              setToLocalStorage("isLogged", true);
-              setSelectedUser(responseUser.data);
-              setToLocalStorage("userId", responseUser.data.id);
-              setIsLogged(true);
-              navigate("/");
-            }
-          })
-          .catch((err) => toast.error(err.message)); */
         forgotPasswordLogin(values).then((result) => {
           console.log(result);
           if (result.success) {
@@ -125,7 +90,7 @@ function LoginPassReset() {
           </div>
           <div className="text-right mt-5">
             <button type="submit" className="btn text-lg">
-              Giriş Yap
+              Şifreyi Değiştir
             </button>
           </div>
         </form>
