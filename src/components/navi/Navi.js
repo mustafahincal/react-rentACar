@@ -6,7 +6,7 @@ import { removeFromLocalStorage } from "../../services/localStorageService";
 import logo from "../../assets/logo.png";
 
 function Navi() {
-  const { isAdmin, isLogged, setIsLogged, setIsAdmin, isEditor } =
+  const { isAdmin, isLogged, setIsLogged, setIsAdmin, isEditor, setIsEditor } =
     useAuthContext();
   const { selectedUser } = useUserContext();
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ function Navi() {
   const handleLogOut = () => {
     setIsLogged(false);
     setIsAdmin(false);
+    setIsEditor(false);
     removeFromLocalStorage("token");
     removeFromLocalStorage("isAdmin");
     removeFromLocalStorage("isLogged");
@@ -23,9 +24,10 @@ function Navi() {
   };
   return (
     <div>
-      <nav className="flex justify-between items-center py-2 px-12 bg-darkBlue text-white font-bold">
+      <nav className="flex justify-between items-center py-6 px-14 bg-darkBlue text-white font-bold">
         <NavLink to="/" className={({ isActive }) => "logo text-3xl"}>
-          <img src={logo} className="w-20 h-20 bg-darkBlue" />
+          {/* <img src={logo} className="w-20 h-20 bg-darkBlue" /> */}
+          rentACar
         </NavLink>
         <div className="text-xl">
           <NavLink to="/  ">Anasayfa</NavLink>

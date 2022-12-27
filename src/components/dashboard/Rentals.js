@@ -19,15 +19,13 @@ function Rentals() {
           <div>{rental.brandName + " " + rental.modelName}</div>
           <div>{rental.colorName}</div>
           <div>{rental.firstName + " " + rental.lastName}</div>
-          <div>{moment(rental.rentDate).format("DD-MM-YYYY")}</div>
-          <div>{moment(rental.returnDate).format("DD-MM-YYYY")}</div>
           <div>{rental.amount}₺</div>
           <div>
             <NavLink
               to={`/updateRental/${rental.carId}`}
               className="btn text-sm"
             >
-              Düzenle
+              Detay
             </NavLink>
           </div>
         </div>

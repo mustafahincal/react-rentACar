@@ -11,7 +11,7 @@ function ProfileRentals() {
   const { selectedUser } = useUserContext();
   useEffect(() => {
     getRentalDetailsByUserId(getFromLocalStorage("userId")).then((result) =>
-      console.log(result.data)
+      setRentals(result.data)
     );
   }, []);
   return (

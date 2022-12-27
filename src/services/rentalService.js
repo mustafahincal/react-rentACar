@@ -8,3 +8,5 @@ export const getRentalDetailsByUserId = (userId) =>
   get(apiUrl + "/Rentals/getrentaldetailsbyuserid?userId=" + userId);
 
 export const addRental = (data) => post(apiUrl + "/Rentals/add", data);
+
+export const updateRental = (data) => post(apiUrl + "/Rentals/update", data);
