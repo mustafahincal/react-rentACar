@@ -1,8 +1,8 @@
-import React from "react";
-import Cars from "../car/Cars";
-import Brands from "..//brand/Brands";
-import Colors from "../color/Colors";
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import Cars from '../car/Cars';
+import Brands from '../../components/brand/Brands';
+import Colors from '../../components/color/Colors';
+import { Routes, Route } from 'react-router-dom';
 
 function Main() {
   return (

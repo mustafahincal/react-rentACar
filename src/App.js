@@ -1,23 +1,24 @@
-import Navi from "./components/navi/Navi";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/home/Home";
-import Main from "./components/main/Main";
-import CarDetails from "./components/car/CarDetails";
-import RentACar from "./components/car/RentACar";
-import EditACar from "./components/dashboard/update/UpdateCar";
-import Payment from "./components/car/Payment";
-import Login from "./components/login/Login";
-import Register from "./components/register/Register";
-import Dashboard from "./components/dashboard/Dashboard";
-import AddCar from "./components/dashboard/add/AddCar";
-import UpdateCar from "./components/dashboard/update/UpdateCar";
-import { ToastContainer } from "react-toastify";
-import UpdateUser from "./components/dashboard/update/UpdateUser";
-import UpdateCreditCard from "./components/dashboard/update/UpdateCreditCard";
-import UpdateRental from "./components/dashboard/update/UpdateRental";
-import Profile from "./components/profile/Profile";
-import Page404 from "./components/page404/Page404";
-import LoginPassReset from "./components/login/LoginPassReset";
+import Navi from './components/navi/Navi';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/home/Home';
+import CarDetails from './pages/car/CarDetails';
+import Login from './pages/login/Login';
+import Register from './pages/register/Register';
+import DashBoard from './pages/dashboard/Dashboard';
+import AddCar from './pages/dashboard/add/AddCar';
+import UpdateCar from './pages/dashboard/update/UpdateCar';
+import UpdateUser from './pages/dashboard/update/UpdateUser';
+import UpdateCreditCard from './pages/dashboard/update/UpdateCreditCard';
+import UpdateRental from './pages/dashboard/update/UpdateRental';
+import Profile from './pages/profile/Profile';
+import Main from './pages/main/Main';
+import RentACar from './pages/car/RentACar';
+import EditACar from './pages/dashboard/update/UpdateCar';
+import Payment from './pages/car/Payment';
+import LoginPassReset from './pages/login/LoginPassReset';
+import Page404 from './pages/page404/Page404';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   return (
@@ -34,7 +35,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/loginpassreset" element={<LoginPassReset />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="/dashboard/*" element={<DashBoard />} />
           <Route path="/addCar" element={<AddCar />} />
           <Route path="/updateCar/:id" element={<UpdateCar />} />
           <Route path="/updateUser/:id" element={<UpdateUser />} />
