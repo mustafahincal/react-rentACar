@@ -23,7 +23,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
   return (
     <>
-      <div className="font-poppins bg-gray-100 min-h-screen">
+      <div className="font-poppins bg-gray-50 min-h-screen">
         <Navi />
         <Routes>
           <Route path="/" element={<Home />} />

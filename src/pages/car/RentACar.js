@@ -1,43 +1,56 @@
-import React, { useEffect } from "react";
-import { useCarContext } from "../../context/CarContext";
-import defaultImage from "../../assets/default.png";
-import { NavLink, useNavigate } from "react-router-dom";
-import { RentalSchema } from "../../validations/rentalSchema";
-import { useFormik } from "formik";
-import { useUserContext } from "../../context/UserContext";
-import { getCar } from "../../services/carService";
-import { addRental } from "../../services/rentalService";
-import { toast } from "react-toastify";
+import React, { useEffect } from 'react';
+import { useCarContext } from '../../context/CarContext';
+import defaultImage from '../../assets/default.png';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { RentalSchema } from '../../validations/rentalSchema';
+import { useFormik } from 'formik';
+import { useUserContext } from '../../context/UserContext';
+import { getCar } from '../../services/carService';
+import { addRental } from '../../services/rentalService';
+import { toast } from 'react-toastify';
 
 function RentACar() {
-  const { selectedCar } = useCarContext();
+  const { selectedCar, setSelectedCar } = useCarContext();
   const { selectedUser } = useUserContext();
+
+  const { id } = useParams();
   const navigate = useNavigate();
+  useEffect(() => {
+    getCar(id).then((result) => setSelectedCar(result.data[0]));
+  }, []);
 
-  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
-    useFormik({
-      initialValues: {
-        carId: selectedCar.carId,
-        userId: selectedUser.id,
-        day: "",
-        amount: "",
-      },
-      onSubmit: (values) => {
-        addRental(values)
-          .then((response) => {
-            if (response.success) {
-              toast.success("Kiralama işlemi başarılı");
-              navigate("/");
-            }
-          })
-          .catch((err) =>
-            err.Errors.map((error) => toast.error(error.ErrorMessage))
-          );
-      },
-      validationSchema: RentalSchema,
+  const [rentDetails, setRentDetails] = React.useState({
+    carId: selectedCar.carId,
+    userId: selectedUser.id,
+    day: '',
+    amount: '0',
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addRental({
+      ...rentDetails,
+      userId: selectedUser.id,
+      carId: selectedCar.carId,
+    })
+      .then((response) => {
+        if (response.success) {
+          toast.success('Kiralama işlemi başarılı');
+          navigate('/');
+        }
+      })
+      .catch((err) => toast.error('Kiralama işlemi başarısız'));
+  };
+
+  const handleChangeDay = (value) => {
+    setRentDetails({
+      ...rentDetails,
+      day: value,
+      amount: Number(value) * selectedCar.dailyPrice,
     });
+  };
 
-  const apiImagesUrl = "https://localhost:7067/uploads/images/";
+  const apiImagesUrl = 'https://localhost:7067/uploads/images/';
   return (
     <div className="py-20">
       <div className="bg-white shadow-item w-10/12 m-auto px-10 py-10 flex justify-between gap-5">
@@ -60,7 +73,7 @@ function RentACar() {
             <div className="bg-darkBlue w-1/2 px-5 py-5  text-gray-100">
               <div className="flex flex-col justify-between h-full">
                 <div className="font-semibold text-lg">
-                  {selectedCar.brandName + "  " + selectedCar.modelName}
+                  {selectedCar.brandName + '  ' + selectedCar.modelName}
                 </div>
                 <div>{selectedCar.modelYear}</div>
                 <div>{selectedCar.colorName}</div>
@@ -81,9 +94,10 @@ function RentACar() {
                   Kiralanan Gün Sayısı
                 </label>
                 <input
-                  value={values.day}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={rentDetails.day}
+                  onChange={(e) => {
+                    handleChangeDay(e.target.value);
+                  }}
                   name="day"
                   type="number"
                   id="day"
@@ -95,13 +109,12 @@ function RentACar() {
                   Ücret
                 </label>
                 <input
-                  value={values.amount}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={rentDetails.amount + ' ₺'}
+                  disabled
                   name="amount"
-                  type="number"
+                  type="text"
                   id="amount"
-                  className="text-darkBlue py-2 px-4 w-3/5"
+                  className="text-darkBlue py-2 px-4 w-3/5 bg-gray-100 font-bold tracking-wider"
                 />
               </div>
             </div>

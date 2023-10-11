@@ -1,61 +1,61 @@
-import React, { useState } from "react";
-import { useFormik } from "formik";
-import { LoginSchema } from "../../validations/loginSchema";
-import { createResetPassCode, login } from "../../services/authService";
-import { useAuthContext } from "../../context/AuthContext";
-import { toast } from "react-toastify";
-import { setToLocalStorage } from "../../services/localStorageService";
-import jwtDecode from "jwt-decode";
-import { setCurrentCustomer } from "../../services/customerService";
-import { useUserContext } from "../../context/UserContext";
-import { getUserById, setUser } from "../../services/userService";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import { LoginSchema } from '../../validations/loginSchema';
+import { createResetPassCode, login } from '../../services/authService';
+import { useAuthContext } from '../../context/AuthContext';
+import { toast } from 'react-toastify';
+import { setToLocalStorage } from '../../services/localStorageService';
+import jwtDecode from 'jwt-decode';
+import { setCurrentCustomer } from '../../services/customerService';
+import { useUserContext } from '../../context/UserContext';
+import { getUserById, setUser } from '../../services/userService';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const { setIsLogged, setIsAdmin, setIsEditor } = useAuthContext();
   const { setSelectedUser } = useUserContext();
-  const [resetEmail, setResetEmail] = useState("");
+  const [resetEmail, setResetEmail] = useState('');
   const navigate = useNavigate();
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        email: "",
-        password: "",
+        email: '',
+        password: '',
       },
       onSubmit: (values) => {
         login(values)
           .then(async (response) => {
             if (response.success) {
               toast.success(response.message);
-              setToLocalStorage("token", response.data.token);
-              values.email = "";
-              values.password = "";
+              setToLocalStorage('token', response.data.token);
+              values.email = '';
+              values.password = '';
 
               let decode = await jwtDecode(response.data.token);
 
               let responseUser = await getUserById(
                 decode[
-                  "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+                  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
                 ]
               );
-              if (decode.email === "admin@mail.com") {
+              if (decode.email === 'admin@mail.com') {
                 setIsAdmin(true);
-                setToLocalStorage("isAdmin", true);
+                setToLocalStorage('isAdmin', true);
               }
               if (
                 decode[
-                  "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-                ] === "Editor"
+                  'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+                ] === 'Editor'
               ) {
                 setIsEditor(true);
-                setToLocalStorage("isEditor", true);
+                setToLocalStorage('isEditor', true);
               }
-              setToLocalStorage("isLogged", true);
+              setToLocalStorage('isLogged', true);
               setSelectedUser(responseUser.data);
-              setToLocalStorage("userId", responseUser.data.id);
+              setToLocalStorage('userId', responseUser.data.id);
               setIsLogged(true);
-              navigate("/");
+              navigate('/');
             }
           })
           .catch((err) => toast.error(err.response.data.message));
@@ -67,7 +67,7 @@ function Login() {
     createResetPassCode({ email: resetEmail }).then((result) => {
       if (result.success) {
         toast.success(result.message);
-        navigate("/loginpassreset");
+        navigate('/loginpassreset');
       }
     });
   };
@@ -118,7 +118,7 @@ function Login() {
             </button>
           </div>
         </form>
-        <div className="text-right mt-1">
+        {/* <div className="text-right mt-1">
           <div className="w-full flex  flex-col bg-darkBlue text-gray-100  px-14 py-14 text-lg">
             <div>
               <input
@@ -137,7 +137,7 @@ function Login() {
           >
             Şifremi Unuttum
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
